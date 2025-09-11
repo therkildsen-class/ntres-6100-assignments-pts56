@@ -22,7 +22,7 @@ Please use the following table to grade the student's assignment:
 |      8      |                 |                     |               |
 |      9      |                 |                     |               |
 
-Assignment 2:
+Assignment 2: https://github.com/pts56/Assignment_2_Repo.git
 
 Assignment 3:
 
