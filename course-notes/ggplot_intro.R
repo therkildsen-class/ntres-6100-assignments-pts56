@@ -1,4 +1,4 @@
-library(tidyverse)
+library(tidyverse) ### important to laod at the top of the document 
 view(mpg)
 #gg is for the grammar of graphics 
 #in ggg plot is built from a series of data (Data-Aesthetics-Geometries_Facets_Stats-Coordinates-Theme)
@@ -10,7 +10,8 @@ ggplot(data = mpg) +
                            color = class, size = cyl), # aesthetics 
              shape = 1) + #makes the circles empty 
   geom_smooth(mapping = aes(x = displ, y= hwy)) + #be careful to always include + 
-  facet_wrap(~ year, nrow = 2) 
+  facet_wrap(~ year, nrow = 2) + 
+  theme_dark() #theme function is a helpful way to make graphics look good 
 
 
 ggplot(data=mpg,(mapping = aes(x = displ, y= hwy)) + 
