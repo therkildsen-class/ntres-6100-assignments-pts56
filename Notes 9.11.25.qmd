@@ -1,0 +1,39 @@
+---
+title: "Workalong in Class"
+format: html
+editor: visual
+---
+
+## Notes from Class
+
+Always a good idea to load packages we need up front, and in a seperate code chunck so we can mess with the setting afterwords.
+
+```{r}
+library(tidyverse)
+
+```
+
+So far so good
+
+ggplot is designed to work in data that is in a "tidy format"
+
+will start wirh data that is already in a tidy format.
+
+```{r}
+mpg
+```
+
+mpg
+
+(most data comes in an object type dataframe
+
+Cars (typical R dataset) compare with "tidy" data in
+
+```{r}
+ca
+```
+
+```{r}
+View(mpg)
+
+```
