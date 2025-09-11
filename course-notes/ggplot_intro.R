@@ -7,7 +7,7 @@ plot(mpg$hwy,mpg$displ)#class "r" scatter plot i just learned in BTRY
 
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, # x and y axis 
-                           color = class, size = cyl), # aesthetics work 
+                           color = class, size = cyl), # aesthetics 
              shape = 1). #makes the circles empty 
 
 ggplot(data = mpg) +
