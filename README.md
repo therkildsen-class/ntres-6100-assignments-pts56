@@ -4,7 +4,7 @@ This is a template repository for students in NTRES 6100. Through GitHub Classro
 
 #### Student:
 
-Please indicate if you are **taking this class for credit!** 
+Please indicate if you are **taking this class for credit!**
 
 #### Instructors:
 
@@ -12,7 +12,7 @@ Please use the following table to grade the student's assignment:
 
 | Assignment# | Fully completed | Partially completed | Not completed |
 |:-----------:|:---------------:|:-------------------:|:-------------:|
-|      1      |         X        |                     |               |
+|      1      |        X        |                     |               |
 |      2      |                 |                     |               |
 |      3      |                 |                     |               |
 |      4      |                 |                     |               |
@@ -21,3 +21,11 @@ Please use the following table to grade the student's assignment:
 |      7      |                 |                     |               |
 |      8      |                 |                     |               |
 |      9      |                 |                     |               |
+
+Assignment 2:
+
+Assignment 3:
+
+-   Website:
+
+-   Repo:
