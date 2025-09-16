@@ -1,4 +1,4 @@
-library(tidyverse) ### important to laod at the top of the document 
+library(tidyverse) ### important to load at the top of the document 
 view(mpg)
 #gg is for the grammar of graphics 
 #in ggg plot is built from a series of data (Data-Aesthetics-Geometries_Facets_Stats-Coordinates-Theme)
@@ -40,7 +40,11 @@ ggplot(data = mpg) +
 
 
 
-
+ggplot(data=mpg, mapping = aes(x=displ, y=hwy)) +
+  geom_point(mapping=aes (color=class, size=cyl), shape=1) +
+  geom_smooth() +
+  facet_wrap(~year, nrow=2) +
+  theme_minimal()
 
 
 
