@@ -45,6 +45,7 @@ ggplot(data=mpg, mapping = aes(x=displ, y=hwy)) +
   geom_smooth() +
   facet_wrap(~year, nrow=2) +
   theme_minimal()
-
-
+## don't save figures mousy style: save them with code
+ ggsave(filename="Rplot.pdf", width=8, height=4) # code to save plots with code 
+?ggsave
 
