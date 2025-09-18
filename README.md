@@ -26,8 +26,8 @@ Assignment 2: https://github.com/pts56/Assignment_2_Repo.git
 
 Assignment 3:
 
--   Website:
+-   Website: file:///Users/patrickshea/github/Assignment_3_pts56/patrick.html
 
--   Repo:
+-   Repo: https://github.com/pts56/Assignment-3-nf295pts56.git
 
 -   
