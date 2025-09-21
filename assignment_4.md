@@ -1,39 +1,44 @@
 # assignment_4.qmd
 Patrick Shea
 
-# Assignment 1: Quarto template
+# Assignment 4: Data Transformation
 
-## Instructions: Please read through this before you begin
+## **Instructions: Please read through this before you begin**
 
-- This assignment is due by **10pm on Thursday 09/04/2025**.
+- This assignment is due by **10pm on Thursday 09/25/2024**. Please
+  upload it using your personal GitHub repository for this class.
 
-- For this assignment, please **reproduce this markdown file exactly as
-  shown** using Quarto (including this list of instructions). You do
-  **NOT** need to fill out the code chunks (i.e. answer the questions)
-  for this assignment. We are just practicing markdown formatting right
-  now.
+- You can start by making a copy of the Quarto template that you created
+  as `assignment_1.qmd` and work from there (you wrote up most of the
+  template text needed here in assignment 1; now you’ll be filling in
+  the code chunks).
 
-- Please name your Quarto file `assignment_1.qmd`
+- Please name your Quarto file `assignment_4.qmd` and select `gfm` as
+  the output format.
 
-- Set the output format to `gfm` to produce the correct `.md` file for
-  github rendering.
+- For this assignment, please **reproduce this markdown file** using
+  Quarto. This includes the following:
 
-- Pay attention to all the formatting in this file, including bullet
-  points, bold characters, inserted code chunks, headings, text colors,
-  blank lines, and etc. You will need to reproduce all of these.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formating in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-- You will use the product of this assignment as a template for your
-  fourth assignment, where you will actually fill out the code chunks.
+  - Write code to reproduce all the figures and tables shown. Have all
+    your code embedded within the Quarto file, and show **BOTH your code
+    and plots** in the rendered markdown file.
 
-- You will have to submit your assignment through GitHub. You can
-  complete your template after Thursday’s class, but don’t worry about
-  submitting it until after we have gone over how to submit it through
-  GitHub in next Tuesday’s class. To do so, you will first move
-  `assignment_1.qmd` and `assignment_1.md` to the `problem_sets` folder
-  in your own GitHub repository that you have created in class through
-  GitHub Classroom. (If you haven’t created this repo yet, please use
-  the following url: https://classroom.github.com/a/StaRJQLV). Then, you
-  can stage these files, make a commit, and push the commit.
+  - When a verbal response is needed, answer by editing the part in the
+    Quarto template where it says “Write your response here”.
+
+  - Use Quarto functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
+
+- Note that Exercise 3 is **optional** (only Exercise 1 and 2 are
+  required).
 
 ## Load packages
 
@@ -42,6 +47,25 @@ Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
+library(knitr)
+```
+
+``` r
+library(tidyverse)
+```
+
+    ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+    ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+    ✔ purrr     1.1.0     
+    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ✖ dplyr::filter() masks stats::filter()
+    ✖ dplyr::lag()    masks stats::lag()
+    ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
 library(knitr)
 ```
 
@@ -67,18 +91,57 @@ economist_data <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-d
 
 <br>
 
+``` r
+economist_data <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/EconomistData.csv")
+```
+
+    New names:
+    Rows: 173 Columns: 6
+    ── Column specification
+    ──────────────────────────────────────────────────────── Delimiter: "," chr
+    (2): Country, Region dbl (4): ...1, HDI.Rank, HDI, CPI
+    ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+    Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    • `` -> `...1`
+
 #### 1.1 Show the first few rows of `economist_data`.
 
 ``` r
 ## Write your code here
+economist_data
 ```
 
-<br>
+``` r
+economist_data
+```
+
+    # A tibble: 173 × 6
+        ...1 Country     HDI.Rank   HDI   CPI Region           
+       <dbl> <chr>          <dbl> <dbl> <dbl> <chr>            
+     1     1 Afghanistan      172 0.398   1.5 Asia Pacific     
+     2     2 Albania           70 0.739   3.1 East EU Cemt Asia
+     3     3 Algeria           96 0.698   2.9 MENA             
+     4     4 Angola           148 0.486   2   SSA              
+     5     5 Argentina         45 0.797   3   Americas         
+     6     6 Armenia           86 0.716   2.6 East EU Cemt Asia
+     7     7 Australia          2 0.929   8.8 Asia Pacific     
+     8     8 Austria           19 0.885   7.8 EU W. Europe     
+     9     9 Azerbaijan        91 0.7     2.4 East EU Cemt Asia
+    10    10 Bahamas           53 0.771   7.3 Americas         
+    # ℹ 163 more rows
 
 #### 1.2 Expore the relationship between human development index (`HDI`) and corruption perception index (`CPI`) with a scatter plot as the following.
 
 ``` r
 ## Write your code here
+
+ggplot(economist_data = HDI) + 
+  geom_point(mapping = aes(x = HDI, y = CPI, # x and y axis 
+                           color = class, size = cyl), # aesthetics 
+             shape = 1) + #makes the circles empty 
+  geom_smooth(mapping = aes(x = displ, y= hwy)) + #be careful to always include + 
+  facet_wrap(~ year, nrow = 2) + 
+  theme_dark() #theme function is a helpful way to make graphics look good 
 ```
 
 <br>

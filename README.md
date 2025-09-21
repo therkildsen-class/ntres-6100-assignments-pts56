@@ -13,8 +13,8 @@ Please use the following table to grade the student's assignment:
 | Assignment# | Fully completed | Partially completed | Not completed |
 |:-----------:|:---------------:|:-------------------:|:-------------:|
 |      1      |        X        |                     |               |
-|      2      |        X         |                     |               |
-|      3      |        X         |                     |               |
+|      2      |        X        |                     |               |
+|      3      |        X        |                     |               |
 |      4      |                 |                     |               |
 |      5      |                 |                     |               |
 |      6      |                 |                     |               |
@@ -26,8 +26,8 @@ Assignment 2: <https://github.com/pts56/Assignment_2_Repo.git>
 
 Assignment 3:
 
--   Website: file:///Users/patrickshea/github/Assignment_3_pts56/patrick.html
+-   Website: <file:///Users/patrickshea/github/Assignment_3_pts56/patrick.html>
 
--   Repo: https://github.com/pts56/Assignment-3-nf295pts56.git
+-   Repo: <https://github.com/pts56/Assignment-3-nf295pts56.git>
 
 -   
