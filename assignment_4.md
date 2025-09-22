@@ -294,7 +294,17 @@ economist_data |> ## same workflow from Thurs Class
 #### 1.7 Fit a separate **straight line** for **each region** instead, and turn off the confidence interval.
 
 ``` r
-## Write your code here
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
+  geom_smooth(mapping = aes(x = HDI, y = CPI, color = Region), method = "lm", se = FALSE)+
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
 ```
 
 ``` r
@@ -302,7 +312,7 @@ economist_data |> ## same workflow from Thurs Class
   select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
   ggplot() + ## don't have to add ^^ or do it same way as base "r"
   geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
-  geom_smooth(mapping = aes(x = HDI, y = CPI), method = "lm", se = FALSE, color="black")+
+  geom_smooth(mapping = aes(x = HDI, y = CPI, color = Region), method = "lm", se = FALSE)+
   labs(
     title = "Human Development Index vs Corruption Perception Index",
     x = "HDI",
@@ -319,17 +329,74 @@ economist_data |> ## same workflow from Thurs Class
 
 ``` r
 ## Write your code here
+economist_data |> ## going to stop commenting
+  select(Country, HDI, CPI, Region, HDI.Rank) |> 
+  ggplot() + 
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + 
+  geom_smooth(mapping = aes(x = HDI, y = CPI, color = Region), method = "lm", se = FALSE)+
+  facet_wrap(~ Region) +
+  labs(
+
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() 
 ```
 
-<br>
+``` r
+economist_data |> ## going to stop commenting
+  select(Country, HDI, CPI, Region, HDI.Rank) |> 
+  ggplot() + 
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + 
+  geom_smooth(mapping = aes(x = HDI, y = CPI, color = Region), method = "lm", se = FALSE)+
+  facet_wrap(~ Region) +
+  labs(
+
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() 
+```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-10-1.png)
 
 #### 1.9 Show the distribution of `HDI` in each region using density plot. Set the transparency to 0.5
 
 ``` r
 ## Write your code here
+?geom_density()
+economist_data |> ## what i'm building off of 
+  select(Country, HDI, Region,) |> 
+  ggplot() + 
+  geom_density(mapping = aes(x = HDI, fill = Region, alpha = 0.5 )) +
+    labs(
+
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "Density"
+  ) + 
+  theme_minimal() 
 ```
 
-<br>
+``` r
+economist_data |> ## what i'm building off of 
+  select(Country, HDI, Region,) |> 
+  ggplot() + 
+  geom_density(mapping = aes(x = HDI, fill = Region, alpha = 0.5 )) +
+    labs(
+
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "Density"
+  ) + 
+  theme_minimal() 
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-11-1.png)
 
 #### 1.10 Show the distribution of `HDI` in each region using histogram and facetting.
 
@@ -337,15 +404,74 @@ economist_data |> ## same workflow from Thurs Class
 ## Write your code here
 ```
 
+``` r
+economist_data |> 
+  select(Country, HDI, Region) |> 
+  ggplot() + 
+  geom_histogram (mapping = aes(x = HDI)) +
+  facet_wrap(~Region) + 
+    labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "Count"
+  ) + 
+  theme_minimal() 
+```
+
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-12-1.png)
+
 <br>
 
 #### 1.11 Show the distribution of `HDI` in each region using a box plot. Set the transparency of these boxes to 0.5 and do not show outlier points with the box plot. Instead, show all data points for each country in the same plot. (Hint: `geom_jitter()` or `position_jitter()` might be useful.)
 
 ``` r
 ## Write your code here
+economist_data |> ## from Data Wrangling
+  select(Country, HDI, Region) |> 
+  ggplot() + 
+  geom_boxplot(
+    mapping = aes(x = Region, y = HDI), 
+    alpha = 0.5, # turning transpercy to 0.5                     
+  ) +
+  geom_jitter(
+    mapping = aes(x = Region, y = HDI),   
+    alpha = 0.7,                          
+    color = "black",                      
+    size = 2
+  ) +
+  labs(
+    title = "HDI by Region",
+    x = "Region",
+    y = "HDI"
+  ) + 
+  theme_minimal()
 ```
 
-<br>
+``` r
+economist_data |> ## from Data Wrangling
+  select(Country, HDI, Region) |> 
+  ggplot() + 
+  geom_boxplot(
+    mapping = aes(x = Region, y = HDI), 
+    alpha = 0.5, # turning transpercy to 0.5                     
+  ) +
+  geom_jitter(
+    mapping = aes(x = Region, y = HDI),   
+    alpha = 0.7,                          
+    color = "black",                      
+    size = 2
+  ) +
+  labs(
+    title = "HDI by Region",
+    x = "Region",
+    y = "HDI"
+  ) + 
+  theme_minimal()
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-13-1.png)
 
 #### 1.12 Show the count of countries in each region using a bar plot.
 
@@ -353,13 +479,31 @@ economist_data |> ## same workflow from Thurs Class
 ## Write your code here
 ```
 
-<br>
+``` r
+economist_data |> 
+  select(Country, HDI, Region) |> 
+  ggplot() + 
+  geom_bar(mapping = aes( x = Region, fill = Region)) + 
+             labs(
+               title = "Count of Countries in Region",
+               x = "Region",
+               y = "Countries"
+               ) + 
+             theme_minimal()
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-14-1.png)
 
 #### 1.13 You have now created a variety of different plots of the same dataset. Which of your plots do you think are the most informative? Describe briefly the major trends that you see in the data.
 
-Answer: *Write your response here*.
+Answer: Even though it is a lot of information, I like the Human
+Development Index vs Corruption Perception Index with dots proportional
+to HDI rank because I think it helps us identify the distribution in a
+helpful way.
 
-<br> <br>
+Some trends: HDI is generally a higher value in what we would consider
+“wealthy” or traditionally colonial countries. There is more variability
+of HDI within regions than between regions.
 
 ## Exercise 2. Theophylline experiment
 
