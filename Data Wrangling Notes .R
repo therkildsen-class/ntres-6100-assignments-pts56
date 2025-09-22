@@ -75,7 +75,7 @@ coronavirus_US <- filter(coronavirus, country%in%c("US"))
 |> ### keyboard shotcut is shift+command+m "and then" 
   
 coronavirus |> #"and then" 
-  filter (country == "US") |> 
+  filter (country == "US") |>
   select(-lat, -long, -province) #line breaks don't matter but makes code a lot more readable. new operaroin per line
 
 #without the pipe we have to start "nesting" functions within themselves 

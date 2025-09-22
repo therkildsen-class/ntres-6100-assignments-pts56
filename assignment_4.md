@@ -135,48 +135,161 @@ economist_data
 ``` r
 ## Write your code here
 
-ggplot(economist_data = HDI) + 
-  geom_point(mapping = aes(x = HDI, y = CPI, # x and y axis 
-                           color = class, size = cyl), # aesthetics 
-             shape = 1) + #makes the circles empty 
-  geom_smooth(mapping = aes(x = displ, y= hwy)) + #be careful to always include + 
-  facet_wrap(~ year, nrow = 2) + 
-  theme_dark() #theme function is a helpful way to make graphics look good 
+economist_data |> ## same workflow as Thurs Class
+  select(Country, HDI, CPI) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI )) +
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
 ```
 
-<br>
+``` r
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI )) +
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-4-1.png)
 
 #### 1.3 Make the color of all points in the previous plot red.
 
 ``` r
-## Write your code here
+## 
+  select(Country, HDI, CPI) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI ), color = "red") +
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
 ```
 
-<br>
+``` r
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI ), color = "red") +
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-5-1.png)
 
 #### 1.4 Color the points in the previous plot according to the `Region` variable, and set the size of points to 2.
 
 ``` r
 ## Write your code here
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region), size = 2) + 
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
 ```
 
-<br>
+``` r
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region), size = 2) + 
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-6-1.png)
 
 #### 1.5 Set the size of the points proportional to `HDI.Rank`
 
 ``` r
 ## Write your code here
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
 ```
+
+``` r
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
+```
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-7-1.png)
 
 <br>
 
-#### 1.6 Fit a **smoothing line** to **all** the data points in the scatter plot from Excercise 1.4
+#### 1.6 Fit a **smoothing line** to **all** the data points in the scatter plot from Exercise 1.4
 
 ``` r
 ## Write your code here
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
+  geom_smooth(mapping = aes(x = HDI, y = CPI), method = "lm", se = FALSE, color="black")+
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
 ```
 
-<br>
+``` r
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
+  geom_smooth(mapping = aes(x = HDI, y = CPI), method = "lm", se = FALSE, color="black")+
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
+```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-8-1.png)
 
 #### 1.7 Fit a separate **straight line** for **each region** instead, and turn off the confidence interval.
 
@@ -184,7 +297,23 @@ ggplot(economist_data = HDI) +
 ## Write your code here
 ```
 
-<br>
+``` r
+economist_data |> ## same workflow from Thurs Class
+  select(Country, HDI, CPI, Region, HDI.Rank) |> ## selecting what I want to use 
+  ggplot() + ## don't have to add ^^ or do it same way as base "r"
+  geom_point(mapping = aes(x = HDI, y = CPI, color = Region, size = HDI.Rank)) + ## need to keep track of ()
+  geom_smooth(mapping = aes(x = HDI, y = CPI), method = "lm", se = FALSE, color="black")+
+  labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "CPI"
+  ) + 
+  theme_minimal() ## I like how it looks 
+```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+![](assignment_4_files/figure-commonmark/unnamed-chunk-9-1.png)
 
 #### 1.8 Building on top of the previous plot, show each `Region` in a different facet.
 
