@@ -3,8 +3,10 @@
 #if we go an manually edit excel file then we never have a record
 #take messy data and use code to restructure it 
 
+
 library(tidyverse) #building good habits by loading package at beginning of script 
 library(skimr) #install.packages("skimr")
+library(dplyr)
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv")
 
@@ -128,7 +130,18 @@ vacc |>
 
 
 
+# Summarize Function ---------------------------------------------------------------- 
 
+
+
+coronavirus |> 
+  filter(type== "confirmed") |>  
+  group_by(country) |> 
+  summarize(total =sum(cases)) |> 
+  arrange(-total)
+
+
+  
 
 
 
