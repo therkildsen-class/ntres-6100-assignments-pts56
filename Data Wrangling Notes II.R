@@ -119,12 +119,24 @@ top5 <- coronavirus |>
   summarize(total = sum(cases)) |> 
   arrange(-total) |> 
   head(5) |> 
-  pull(country)
+  pull(country) ## we want to exlucde the data that is not for the counteries we're interestrd in 
 
 
+# a key point of the tidyverse is that data needs to be in a "tidy format" which is supr important 
+# how it helps us plot h
 
 
+## wrapping up Data Wrangling 
 
+
+coronavirus |> 
+  filter(type =="confirmed", country %in%top5) |> 
+  group_by(country) |> 
+  summarize(total = sum(cases)) |> 
+  ggplot() + 
+  geom_line(mapping = aes(x=date, y = total, color = country)) + 
+  facedweap 
   
+\
 
 
