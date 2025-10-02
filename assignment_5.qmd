@@ -1,6 +1,6 @@
 ---
 title: "assignment_5.qmd"
-format: html
+format: md
 editor: visual
 ---
 
