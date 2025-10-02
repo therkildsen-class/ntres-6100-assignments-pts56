@@ -962,10 +962,6 @@ gapminder |>
 
 ![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
-
-<br>
-
 #### 2.3 Exclude Oceania from the previous plot, show each continent in a different color, and fit a separate smoothing line to each continent to identify differences in this relationship between continents. Turn off the confidence intervals.
 
 ``` r
@@ -987,21 +983,9 @@ Note: only two Oceanian countries are included in this dataset, and
 `geom_smooth()` does not work with two data points, which is why they
 are excluded.
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
-
-<br>
-
 #### 2.4 Use faceting to solve the same problem. Include the confidence intervals in this plot.
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
-
-<br>
-
 #### 2.5 Explore the trend in life expectancy through time in each continent. Color by continent.
-
-![](assignment_5_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
-
-<br>
 
 #### 2.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.
 
@@ -1068,8 +1052,6 @@ are excluded.
 </tbody>
 </table>
 
-<br>
-
 #### 2.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy **by plotting**, and discuss historical events possibly explaining these trends. (Hint: facet by country)
 
 Answer: <span style="color:blue">Write your response here.</span>
@@ -1078,11 +1060,7 @@ Answer: <span style="color:blue">Write your response here.</span>
 
 ------------------------------------------------------------------------
 
-<br>
-
 #### THE LAST FOUR QUESTIONS ARE OPTIONAL
-
-<br>
 
 #### 2.8 Explore the trend in per capita GDP through time on each continent (**OPTIONAL**)
 
@@ -1092,18 +1070,8 @@ Answer: <span style="color:blue">Write your response here.</span>
 
 #### 2.9 There is one Asian country that had a very sharp decline in per capita GDP. With the previously filtered dataset, **use a plot** to identify this country and speculate on the historical event underlying this pattern (**OPTIONAL**)
 
-<br>
-
 Answer: <span style="color:blue">Write your response here.</span>
-
-<br>
 
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
-
-<br>
-
 #### 2.11 Polish the previous plot to make it more informative and nicer looking. Below is an example of what you can do, but you don’t have to completely replicate this (**OPTIONAL**)
-
-![](assignment_5_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->

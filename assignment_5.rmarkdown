@@ -4,6 +4,8 @@ format: md
 editor: visual
 ---
 
+
+
 # Assignment 5: Data transformation and visualization - Part 2
 
 <br>
@@ -38,15 +40,21 @@ library(gapminder)
 
 <br>
 
+
+
 ```{r}
 library(tidyverse)
 library(knitr)
 library(gapminder) ##install.packages(gapminder)
 ```
 
+
+
 ## Exercise 1. Trends in land value
 
 This excercise uses a dataset that describes the trends in land value (`Land.Value`), among other variables, in different states in the US 1975-2013. The states are grouped into four different regions, under the variable `region`. This dataset was obtained from the Data Science Services of Harvard University.
+
+
 
 ```{r}
 housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv")
@@ -54,6 +62,8 @@ housing %>%
   head() %>% 
   kable() 
 ```
+
+
 
 ``` r
 housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv")
@@ -177,6 +187,8 @@ housing %>%
 
 -   Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
 
+
+
     ```{r}
     housing |> 
       mutate(region = ifelse(State=="DC",
@@ -186,7 +198,11 @@ housing %>%
       
     ```
 
+
+
 -   Create a new tibble or regular dataframe consisting of this new updated `region` variable along with the original variables `State`, `Date` and `Land.Value` (and no others)
+
+
 
     ```{r}
     housingUpdated <- housing |> 
@@ -196,13 +212,19 @@ housing %>%
       select(region, State, Land.Value, Date)
     ```
 
+
+
 -   Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
+
+
 
     ```{r}
     recordsDC <- housingUpdated |> 
       filter(State=="DC")
     head(recordsDC) ## first six.. unsure if "head" is exactly 6 or if it is just chance 
     ```
+
+
 
 | Hregion | State | Land.Value |    Date |
 |:--------|:------|-----------:|--------:|
@@ -217,6 +239,8 @@ Answer: [ ]{style="color:blue"}Answer is in above code chunks (i think)
 
 #### 1.2 Generate a tibble/dataframe that summarizes the mean land value of each region at each time point and show its first 6 lines.
 
+
+
 ```{r}
 MeanLandValueByRevion <- housing |> 
   group_by(region,Date) |> 
@@ -224,6 +248,8 @@ MeanLandValueByRevion <- housing |>
   ungroup()
 head(MeanLandValueByRevion) ## top of the dataset 
 ```
+
+
 
 | region  |    Date | mean_land_value |
 |:--------|--------:|----------------:|
@@ -237,6 +263,8 @@ head(MeanLandValueByRevion) ## top of the dataset
 <br>
 
 #### 1.3 Using the tibble/dataframe from 1.2, plot the trend in mean land value of each region through time.
+
+
 
 ```{r}
 
@@ -260,6 +288,8 @@ ggplot(MeanLandValueByRevion,
        y="Mean Land Value") 
        
 ```
+
+
 
 ![](assignment_5_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
@@ -288,6 +318,8 @@ gapminder %>%
 
 #### 2.1 Use a scatterplot to explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in the year 2007.
 
+
+
 ```{r}
 gapminder |> 
   filter(year == 2007) |> 
@@ -297,11 +329,15 @@ gapminder |>
   scale_x_log10()
 ```
 
+
+
 ![](assignment_5_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 <br>
 
 #### 2.2 Add a smoothing line to the previous plot.
+
+
 
 ```{r}
 gapminder |> 
@@ -313,7 +349,11 @@ gapminder |>
   scale_x_log10()
 ```
 
+
+
 #### 2.3 Exclude Oceania from the previous plot, show each continent in a different color, and fit a separate smoothing line to each continent to identify differences in this relationship between continents. Turn off the confidence intervals.
+
+
 
 ```{r}
 gapminder |> 
@@ -326,19 +366,29 @@ gapminder |>
   scale_x_log10()
 ```
 
+
+
 Note: only two Oceanian countries are included in this dataset, and `geom_smooth()` does not work with two data points, which is why they are excluded.
 
 #### 2.4 Use faceting to solve the same problem. Include the confidence intervals in this plot.
 
+
+
 ```{r}
 
 ```
+
+
 
 #### 2.5 Explore the trend in life expectancy through time in each continent. Color by continent.
 
+
+
 ```{r}
 
 ```
+
+
 
 #### 2.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.
 
@@ -374,3 +424,4 @@ Answer: [ Write your response here. ]{style="color:blue"}
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
 
 #### 2.11 Polish the previous plot to make it more informative and nicer looking. Below is an example of what you can do, but you don’t have to completely replicate this (**OPTIONAL**)
+
