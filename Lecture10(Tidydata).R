@@ -104,7 +104,42 @@ ttow <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 
 rking <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Return_Of_The_King.csv")
 
+## today we're focusing on importing data into 'r' 
 
+##annoucements: next assignment is due Thursday PM 
+library(tidyverse)
+
+#the standard structure of tidy datasets are alkike
+##but every messy dataset
+
+#1. each variable in column
+#2. each obsevation in a row
+#3. each cell is a single measurment (think connolly)
+
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
+
+
+coronavirus |> 
+  filter(country == "US", cases >= 0) |> 
+  ggplot() + 
+  geom_line(aes(x=date, y=cases, color = type)) ## don't need mapping because we have aes function 
+
+
+corona_wide <- coronavirus |> 
+  pivot_wider(names_from= type, 
+              values_from = cases)## when we start splitting evey categorical variable into different column then we strt having to split everything into different layers 
+
+
+coronavirus_ttd <- coronavirus |> 
+  group_by(country, type) |>
+  summarize(total_cases = sum(cases)) |>
+  pivot_wider(names_from = type, values_from = total_cases)
+
+# Now we can plot this easily
+ggplot(coronavirus_ttd) +
+  geom_label(mapping = aes(x = confirmed, y = death, label = country))
+
+## tidy data = means a specific thing, but is context dependent 
 
   
 
