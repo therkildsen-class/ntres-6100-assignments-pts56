@@ -146,8 +146,8 @@ ggplot(mean_land_value_by_region,
 This exercise uses the `gapminder` dataset from the `gapminder` package. It describes the life expectancy (`lifeExp`), GDP per capita (`gdpPercap`), and population (`pop`) of 142 countries from 1952 to 2007. These countries can be grouped into 5 continents. As a reminder, **reproduce the following plots exactly as shown**.
 
 ``` r
-gapminder %>% 
-  head() %>% 
+gapminder %>% ## |> 
+  head() %>% ## |> 
   kable()
 ```
 
@@ -160,22 +160,21 @@ gapminder %>%
 | Afghanistan | Asia      | 1972 |  36.088 | 13079460 |  739.9811 |
 | Afghanistan | Asia      | 1977 |  38.438 | 14880372 |  786.1134 |
 
-<br>
-
 #### 2.1 Use a scatterplot to explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in the year 2007.
 
 ```{r}
-gapminder |> 
-  filter(year == 2007) |> 
-  ggplot(aes(x=gdpPercap,
-             y=lifeExp))+
-  geom_point()+
-  scale_x_log10()
+view(gapminder)
 ```
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+```{r}
 
-<br>
+gapminder |> 
+  filter(year == 2007) |> 
+  ggplot(aes(x = gdpPercap,
+             y = lifeExp)) +
+  geom_point() 
+
+```
 
 #### 2.2 Add a smoothing line to the previous plot.
 
@@ -185,8 +184,7 @@ gapminder |>
   ggplot(aes(x=gdpPercap,
              y=lifeExp))+
   geom_point()+
-  geom_smooth() +
-  scale_x_log10()
+  geom_smooth() 
 ```
 
 #### 2.3 Exclude Oceania from the previous plot, show each continent in a different color, and fit a separate smoothing line to each continent to identify differences in this relationship between continents. Turn off the confidence intervals.
@@ -196,10 +194,9 @@ gapminder |>
   filter(year == 2007,
          continent != "Oceania" ) |> 
   ggplot(aes(x=gdpPercap,
-             y=lifeExp, color = continent))+
+             y=lifeExp, color = continent)) +
   geom_point()+
-  geom_smooth(se = FALSE) +
-  scale_x_log10()
+  geom_smooth()
 ```
 
 Note: only two Oceanian countries are included in this dataset, and `geom_smooth()` does not work with two data points, which is why they are excluded.
@@ -207,13 +204,29 @@ Note: only two Oceanian countries are included in this dataset, and `geom_smooth
 #### 2.4 Use faceting to solve the same problem. Include the confidence intervals in this plot.
 
 ```{r}
-
+gapminder |> 
+  filter(year == 2007,
+         continent != "Oceania" ) |> 
+  ggplot(aes(x = gdpPercap,
+             y = lifeExp, 
+             color = continent)) +
+  geom_point()+
+  geom_smooth() + 
+  facet_wrap(~continent)
 ```
 
 #### 2.5 Explore the trend in life expectancy through time in each continent. Color by continent.
 
 ```{r}
 
+gapminder |> 
+  ggplot(aes(x = year ,
+             y = lifeExp, 
+             group = country, ## took me a while to figure out 
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~continent)
+ 
 ```
 
 #### 2.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.
@@ -227,11 +240,25 @@ Note: only two Oceanian countries are included in this dataset, and `geom_smooth
 | Afghanistan | Asia      | 1972 |  36.088 | 13079460 |  739.9811 |
 | Afghanistan | Asia      | 1977 |  38.438 | 14880372 |  786.1134 |
 
+```{r}
+asia_gapminder <- gapminder |> 
+  filter(continent == "Asia")
+head(asia_gapminder)
+```
+
 #### 2.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy **by plotting**, and discuss historical events possibly explaining these trends. (Hint: facet by country)
 
-Answer: [Write your response here.]{style="color:blue"}
+Answer: [There are 4 countries that had abnormal trends in life expectancy (Cambodia, China, Iraq, the Democratic People's Republic of Korea and Afghanistan. I just listened to a podcast on the khmer Rouge Civil War/genocide/Vietnam Invasion which i Imagine is the reason for Cambodia abnormal trends. Both drops in the DPRK and China are due to famine. The plateau in Afghanistan starts with the Soviet invasion in 1979 and is still low due to American invasion and subsequent occupation. ]{style="color:blue"}
 
-<br> <br>
+```{r}
+asia_gapminder |> 
+  ggplot(aes( x = year,
+              y = lifeExp, 
+              group = country)) + 
+  geom_line() + 
+  facet_wrap(~ country) 
+
+```
 
 ------------------------------------------------------------------------
 
@@ -239,14 +266,41 @@ Answer: [Write your response here.]{style="color:blue"}
 
 #### 2.8 Explore the trend in per capita GDP through time on each continent (**OPTIONAL**)
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+```{r}
 
-<br>
+gapminder |> ## using same code from plot on problem 1 
+  ggplot(aes(x = year ,
+             y = gdpPercap, 
+             group = country,  
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~continent)
+```
 
 #### 2.9 There is one Asian country that had a very sharp decline in per capita GDP. With the previously filtered dataset, **use a plot** to identify this country and speculate on the historical event underlying this pattern (**OPTIONAL**)
 
-Answer: [Write your response here.]{style="color:blue"}
+```{r}
+asia_gapminder |> 
+  ggplot(aes( x = year,
+              y = gdpPercap, 
+              group = country, 
+              color = country)) + 
+  geom_line() 
+```
+
+Answer: [Looks like the DPRK. .]{style="color:blue"}
 
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
+
+```{r}
+gapminder |> 
+  filter(year %in% c(1952, 2007)) |> 
+  ggplot(aes(x = gdpPercap, 
+             y = lifeExp, 
+             color = continent, 
+             size = pop)) + 
+  geom_point() + 
+  facet_wrap(~ year) 
+```
 
 #### 2.11 Polish the previous plot to make it more informative and nicer looking. Below is an example of what you can do, but you don’t have to completely replicate this (**OPTIONAL**)
