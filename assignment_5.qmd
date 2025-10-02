@@ -288,7 +288,7 @@ asia_gapminder |>
   geom_line() 
 ```
 
-Answer: [Looks like the DPRK. .]{style="color:blue"}
+Answer: [Looks like the DPRK. Unsure how to tell besides color.]{style="color:blue"}
 
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
 
