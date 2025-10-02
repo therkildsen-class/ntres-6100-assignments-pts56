@@ -931,11 +931,36 @@ gapminder %>%
 
 #### 2.1 Use a scatterplot to explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in the year 2007.
 
+``` r
+gapminder |> 
+  filter(year == 2007) |> 
+  ggplot(aes(x=gdpPercap,
+             y=lifeExp))+
+  geom_point()+
+  scale_x_log10()
+```
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+
 ![](assignment_5_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 <br>
 
 #### 2.2 Add a smoothing line to the previous plot.
+
+``` r
+gapminder |> 
+  filter(year == 2007) |> 
+  ggplot(aes(x=gdpPercap,
+             y=lifeExp))+
+  geom_point()+
+  geom_smooth() +
+  scale_x_log10()
+```
+
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
 ![](assignment_5_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
