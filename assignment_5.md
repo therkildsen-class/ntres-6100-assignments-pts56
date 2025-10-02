@@ -968,6 +968,21 @@ gapminder |>
 
 #### 2.3 Exclude Oceania from the previous plot, show each continent in a different color, and fit a separate smoothing line to each continent to identify differences in this relationship between continents. Turn off the confidence intervals.
 
+``` r
+gapminder |> 
+  filter(year == 2007,
+         continent != "Oceania" ) |> 
+  ggplot(aes(x=gdpPercap,
+             y=lifeExp, color = continent))+
+  geom_point()+
+  geom_smooth(se = FALSE) +
+  scale_x_log10()
+```
+
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
 Note: only two Oceanian countries are included in this dataset, and
 `geom_smooth()` does not work with two data points, which is why they
 are excluded.
