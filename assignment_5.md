@@ -36,8 +36,6 @@
 
 -   Please note that Questions 2.8-2.11 are **optional**.
 
-<br>
-
 First, load all the required packages with the following code. Install
 them if they are not installed yet.
 
@@ -46,8 +44,6 @@ library(tidyverse)
 library(knitr)
 library(gapminder)
 ```
-
-<br>
 
 ``` r
 library(tidyverse)
@@ -214,7 +210,7 @@ housing %>%
   kable() 
 ```
 
-<table style="width:99%;">
+<table>
 <colgroup>
 <col style="width: 9%" />
 <col style="width: 9%" />
@@ -230,405 +226,97 @@ housing %>%
 </colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">
-<p>
-State
-</p>
-</th>
-<th style="text-align: left;">
-<p>
-region
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Date
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Home.Value
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Structure.Cost
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Land.Value
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Land.Share..Pct.
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Home.Price.Index
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Land.Price.Index
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Year
-</p>
-</th>
-<th style="text-align: right;">
-<p>
-Qrtr
-</p>
-</th>
+<th style="text-align: left;">State</th>
+<th style="text-align: left;">region</th>
+<th style="text-align: right;">Date</th>
+<th style="text-align: right;">Home.Value</th>
+<th style="text-align: right;">Structure.Cost</th>
+<th style="text-align: right;">Land.Value</th>
+<th style="text-align: right;">Land.Share..Pct.</th>
+<th style="text-align: right;">Home.Price.Index</th>
+<th style="text-align: right;">Land.Price.Index</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">Qrtr</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">
-<p>
-AK
-</p>
-</td>
-<td style="text-align: left;">
-<p>
-West
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2010.25
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-224952
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-160599
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-64352
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-28.6
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.481
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.552
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2010
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1
-</p>
-</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">2010.25</td>
+<td style="text-align: right;">224952</td>
+<td style="text-align: right;">160599</td>
+<td style="text-align: right;">64352</td>
+<td style="text-align: right;">28.6</td>
+<td style="text-align: right;">1.481</td>
+<td style="text-align: right;">1.552</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr>
-<td style="text-align: left;">
-<p>
-AK
-</p>
-</td>
-<td style="text-align: left;">
-<p>
-West
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2010.50
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-225511
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-160252
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-65259
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-28.9
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.484
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.576
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2010
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2
-</p>
-</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">2010.50</td>
+<td style="text-align: right;">225511</td>
+<td style="text-align: right;">160252</td>
+<td style="text-align: right;">65259</td>
+<td style="text-align: right;">28.9</td>
+<td style="text-align: right;">1.484</td>
+<td style="text-align: right;">1.576</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr>
-<td style="text-align: left;">
-<p>
-AK
-</p>
-</td>
-<td style="text-align: left;">
-<p>
-West
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2009.75
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-225820
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-163791
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-62029
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-27.5
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.486
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.494
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2009
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-3
-</p>
-</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">2009.75</td>
+<td style="text-align: right;">225820</td>
+<td style="text-align: right;">163791</td>
+<td style="text-align: right;">62029</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">1.486</td>
+<td style="text-align: right;">1.494</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">3</td>
 </tr>
 <tr>
-<td style="text-align: left;">
-<p>
-AK
-</p>
-</td>
-<td style="text-align: left;">
-<p>
-West
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2010.00
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-224994
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-161787
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-63207
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-28.1
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.481
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.524
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2009
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-4
-</p>
-</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">2010.00</td>
+<td style="text-align: right;">224994</td>
+<td style="text-align: right;">161787</td>
+<td style="text-align: right;">63207</td>
+<td style="text-align: right;">28.1</td>
+<td style="text-align: right;">1.481</td>
+<td style="text-align: right;">1.524</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr>
-<td style="text-align: left;">
-<p>
-AK
-</p>
-</td>
-<td style="text-align: left;">
-<p>
-West
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2008.00
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-234590
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-155400
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-79190
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-33.8
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.544
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.885
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2007
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-4
-</p>
-</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">2008.00</td>
+<td style="text-align: right;">234590</td>
+<td style="text-align: right;">155400</td>
+<td style="text-align: right;">79190</td>
+<td style="text-align: right;">33.8</td>
+<td style="text-align: right;">1.544</td>
+<td style="text-align: right;">1.885</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr>
-<td style="text-align: left;">
-<p>
-AK
-</p>
-</td>
-<td style="text-align: left;">
-<p>
-West
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2008.25
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-233714
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-157458
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-76256
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-32.6
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.538
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1.817
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-2008
-</p>
-</td>
-<td style="text-align: right;">
-<p>
-1
-</p>
-</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">2008.25</td>
+<td style="text-align: right;">233714</td>
+<td style="text-align: right;">157458</td>
+<td style="text-align: right;">76256</td>
+<td style="text-align: right;">32.6</td>
+<td style="text-align: right;">1.538</td>
+<td style="text-align: right;">1.817</td>
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
@@ -666,7 +354,7 @@ West
     `Date` and `Land.Value` (and no others)
 
     ``` r
-    housingUpdated <- housing |> 
+    housing_updated <- housing |> 
       mutate(region = ifelse(State=="DC",
                              "South", 
                              region)) |> 
@@ -677,7 +365,7 @@ West
     records are there from DC? Show the first 6 lines.
 
     ``` r
-    recordsDC <- housingUpdated |> 
+    recordsDC <- housing_updated |> 
       filter(State=="DC")
     head(recordsDC) ## first six.. unsure if "head" is exactly 6 or if it is just chance 
     ```
@@ -741,15 +429,14 @@ West
 </tbody>
 </table>
 
-Answer: <span style="color:blue"></span>Answer is in above code chunks
-(i think)
+Answer: Answer is in above code chunks (i think)
 
 #### 1.2 Generate a tibble/dataframe that summarizes the mean land value of each region at each time point and show its first 6 lines.
 
 ``` r
-MeanLandValueByRevion <- housing |> 
+mean_land_value_by_region <- housing_updated |> 
   group_by(region,Date) |> 
-  summarize(MeanLandValue = mean(Land.Value, na.rm=TRUE)) |> 
+  summarize(mean_land_value = mean(Land.Value, na.rm=TRUE)) |> 
   ungroup()
 ```
 
@@ -757,18 +444,18 @@ MeanLandValueByRevion <- housing |>
     `.groups` argument.
 
 ``` r
-head(MeanLandValueByRevion) ## top of the dataset 
+head(mean_land_value_by_region) ## top of the dataset 
 ```
 
     # A tibble: 6 × 3
-      region   Date MeanLandValue
-      <chr>   <dbl>         <dbl>
-    1 Midwest 1975.         2452.
-    2 Midwest 1976.         2499.
-    3 Midwest 1976.         2608.
-    4 Midwest 1976          2780 
-    5 Midwest 1976.         2967.
-    6 Midwest 1976.         3213.
+      region   Date mean_land_value
+      <chr>   <dbl>           <dbl>
+    1 Midwest 1975.           2452.
+    2 Midwest 1976.           2499.
+    3 Midwest 1976.           2608.
+    4 Midwest 1976            2780 
+    5 Midwest 1976.           2967.
+    6 Midwest 1976.           3213.
 
 <table>
 <thead>
@@ -817,38 +504,17 @@ head(MeanLandValueByRevion) ## top of the dataset
 #### 1.3 Using the tibble/dataframe from 1.2, plot the trend in mean land value of each region through time.
 
 ``` r
-housingUpdated <- housing %>%
-  mutate(region = ifelse(State == "DC", "South", region)) %>%
-  select(region, State, Land.Value, Date)## okay I see why naming conventions are REALLY important now. 
-
-MeanLandValueByRevion <- housingUpdated |> 
-  group_by(region,Date) |> 
-  summarize(MeanLandValue = mean(Land.Value, na.rm=TRUE)) |> 
-  ungroup()
-```
-
-    `summarise()` has grouped output by 'region'. You can override using the
-    `.groups` argument.
-
-``` r
-ggplot(MeanLandValueByRevion,
-       aes(x=Date,
-           y=MeanLandValue,
-           color=region))+
-  geom_line(size=1) + 
-  labs(title= "Mean Land by Region(1975-2013)",
-       x="Year",
-       y="Mean Land Value") 
+ggplot(mean_land_value_by_region,
+       aes(x = Date, 
+           y = mean_land_value,
+           color = region)) + 
+  geom_line(size = 1) ## crucial step was to use "housing_updated" and not "housing"
 ```
 
     Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
     ℹ Please use `linewidth` instead.
 
 ![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png)
-
-![](assignment_5_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-
-<br>
 
 ## Exercise 2. Life expectancy and GDP per capita 1952-2007
 
@@ -859,8 +525,8 @@ It describes the life expectancy (`lifeExp`), GDP per capita
 **reproduce the following plots exactly as shown**.
 
 ``` r
-gapminder %>% 
-  head() %>% 
+gapminder %>% ## |> 
+  head() %>% ## |> 
   kable()
 ```
 
@@ -927,24 +593,21 @@ gapminder %>%
 </tbody>
 </table>
 
-<br>
-
 #### 2.1 Use a scatterplot to explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in the year 2007.
+
+``` r
+view(gapminder)
+```
 
 ``` r
 gapminder |> 
   filter(year == 2007) |> 
-  ggplot(aes(x=gdpPercap,
-             y=lifeExp))+
-  geom_point()+
-  scale_x_log10()
+  ggplot(aes(x = gdpPercap,
+             y = lifeExp)) +
+  geom_point() 
 ```
 
-![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png)
-
-![](assignment_5_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
-
-<br>
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
 #### 2.2 Add a smoothing line to the previous plot.
 
@@ -954,13 +617,12 @@ gapminder |>
   ggplot(aes(x=gdpPercap,
              y=lifeExp))+
   geom_point()+
-  geom_smooth() +
-  scale_x_log10()
+  geom_smooth() 
 ```
 
     `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
 #### 2.3 Exclude Oceania from the previous plot, show each continent in a different color, and fit a separate smoothing line to each continent to identify differences in this relationship between continents. Turn off the confidence intervals.
 
@@ -969,15 +631,14 @@ gapminder |>
   filter(year == 2007,
          continent != "Oceania" ) |> 
   ggplot(aes(x=gdpPercap,
-             y=lifeExp, color = continent))+
+             y=lifeExp, color = continent)) +
   geom_point()+
-  geom_smooth(se = FALSE) +
-  scale_x_log10()
+  geom_smooth()
 ```
 
     `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
-![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 Note: only two Oceanian countries are included in this dataset, and
 `geom_smooth()` does not work with two data points, which is why they
@@ -985,7 +646,35 @@ are excluded.
 
 #### 2.4 Use faceting to solve the same problem. Include the confidence intervals in this plot.
 
+``` r
+gapminder |> 
+  filter(year == 2007,
+         continent != "Oceania" ) |> 
+  ggplot(aes(x = gdpPercap,
+             y = lifeExp, 
+             color = continent)) +
+  geom_point()+
+  geom_smooth() + 
+  facet_wrap(~continent)
+```
+
+    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+
 #### 2.5 Explore the trend in life expectancy through time in each continent. Color by continent.
+
+``` r
+gapminder |> 
+  ggplot(aes(x = year ,
+             y = lifeExp, 
+             group = country, ## took me a while to figure out 
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~continent)
+```
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png)
 
 #### 2.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.
 
@@ -1052,11 +741,43 @@ are excluded.
 </tbody>
 </table>
 
+``` r
+asia_gapminder <- gapminder |> 
+  filter(continent == "Asia")
+head(asia_gapminder)
+```
+
+    # A tibble: 6 × 6
+      country     continent  year lifeExp      pop gdpPercap
+      <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
+    1 Afghanistan Asia       1952    28.8  8425333      779.
+    2 Afghanistan Asia       1957    30.3  9240934      821.
+    3 Afghanistan Asia       1962    32.0 10267083      853.
+    4 Afghanistan Asia       1967    34.0 11537966      836.
+    5 Afghanistan Asia       1972    36.1 13079460      740.
+    6 Afghanistan Asia       1977    38.4 14880372      786.
+
 #### 2.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy **by plotting**, and discuss historical events possibly explaining these trends. (Hint: facet by country)
 
-Answer: <span style="color:blue">Write your response here.</span>
+Answer: <span style="color:blue">There are 4 countries that had abnormal
+trends in life expectancy (Cambodia, China, Iraq, the Democratic
+People’s Republic of Korea and Afghanistan. I just listened to a podcast
+on the khmer Rouge Civil War/genocide/Vietnam Invasion which i Imagine
+is the reason for Cambodia abnormal trends. Both drops in the DPRK and
+China are due to famine. The plateau in Afghanistan starts with the
+Soviet invasion in 1979 and is still low due to American invasion and
+subsequent occupation.</span>
 
-<br> <br>
+``` r
+asia_gapminder |> 
+  ggplot(aes( x = year,
+              y = lifeExp, 
+              group = country)) + 
+  geom_line() + 
+  facet_wrap(~ country) 
+```
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png)
 
 ------------------------------------------------------------------------
 
@@ -1064,14 +785,46 @@ Answer: <span style="color:blue">Write your response here.</span>
 
 #### 2.8 Explore the trend in per capita GDP through time on each continent (**OPTIONAL**)
 
-![](assignment_5_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+``` r
+gapminder |> ## using same code from plot on problem 1 
+  ggplot(aes(x = year ,
+             y = gdpPercap, 
+             group = country,  
+             color = continent)) +
+  geom_line() +
+  facet_wrap(~continent)
+```
 
-<br>
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-16-1.png)
 
 #### 2.9 There is one Asian country that had a very sharp decline in per capita GDP. With the previously filtered dataset, **use a plot** to identify this country and speculate on the historical event underlying this pattern (**OPTIONAL**)
 
-Answer: <span style="color:blue">Write your response here.</span>
+``` r
+asia_gapminder |> 
+  ggplot(aes( x = year,
+              y = gdpPercap, 
+              group = country, 
+              color = country)) + 
+  geom_line() 
+```
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png)
+
+Answer: <span style="color:blue">Looks like the DPRK. .</span>
 
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
+
+``` r
+gapminder |> 
+  filter(year %in% c(1952, 2007)) |> 
+  ggplot(aes(x = gdpPercap, 
+             y = lifeExp, 
+             color = continent, 
+             size = pop)) + 
+  geom_point() + 
+  facet_wrap(~ year) 
+```
+
+![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png)
 
 #### 2.11 Polish the previous plot to make it more informative and nicer looking. Below is an example of what you can do, but you don’t have to completely replicate this (**OPTIONAL**)
