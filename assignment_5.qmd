@@ -26,8 +26,6 @@ editor: visual
 
 -   Please note that Questions 2.8-2.11 are **optional**.
 
-<br>
-
 First, load all the required packages with the following code. Install them if they are not installed yet.
 
 ``` r
@@ -35,8 +33,6 @@ library(tidyverse)
 library(knitr)
 library(gapminder)
 ```
-
-<br>
 
 ```{r}
 library(tidyverse)
@@ -62,116 +58,14 @@ housing %>%
   kable() 
 ```
 
-<table style="width:99%;">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-</colgroup>
-<thead>
-<tr>
-<th style="text-align: left;"><p>State</p></th>
-<th style="text-align: left;"><p>region</p></th>
-<th style="text-align: right;"><p>Date</p></th>
-<th style="text-align: right;"><p>Home.Value</p></th>
-<th style="text-align: right;"><p>Structure.Cost</p></th>
-<th style="text-align: right;"><p>Land.Value</p></th>
-<th style="text-align: right;"><p>Land.Share..Pct.</p></th>
-<th style="text-align: right;"><p>Home.Price.Index</p></th>
-<th style="text-align: right;"><p>Land.Price.Index</p></th>
-<th style="text-align: right;"><p>Year</p></th>
-<th style="text-align: right;"><p>Qrtr</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><p>AK</p></td>
-<td style="text-align: left;"><p>West</p></td>
-<td style="text-align: right;"><p>2010.25</p></td>
-<td style="text-align: right;"><p>224952</p></td>
-<td style="text-align: right;"><p>160599</p></td>
-<td style="text-align: right;"><p>64352</p></td>
-<td style="text-align: right;"><p>28.6</p></td>
-<td style="text-align: right;"><p>1.481</p></td>
-<td style="text-align: right;"><p>1.552</p></td>
-<td style="text-align: right;"><p>2010</p></td>
-<td style="text-align: right;"><p>1</p></td>
-</tr>
-<tr>
-<td style="text-align: left;"><p>AK</p></td>
-<td style="text-align: left;"><p>West</p></td>
-<td style="text-align: right;"><p>2010.50</p></td>
-<td style="text-align: right;"><p>225511</p></td>
-<td style="text-align: right;"><p>160252</p></td>
-<td style="text-align: right;"><p>65259</p></td>
-<td style="text-align: right;"><p>28.9</p></td>
-<td style="text-align: right;"><p>1.484</p></td>
-<td style="text-align: right;"><p>1.576</p></td>
-<td style="text-align: right;"><p>2010</p></td>
-<td style="text-align: right;"><p>2</p></td>
-</tr>
-<tr>
-<td style="text-align: left;"><p>AK</p></td>
-<td style="text-align: left;"><p>West</p></td>
-<td style="text-align: right;"><p>2009.75</p></td>
-<td style="text-align: right;"><p>225820</p></td>
-<td style="text-align: right;"><p>163791</p></td>
-<td style="text-align: right;"><p>62029</p></td>
-<td style="text-align: right;"><p>27.5</p></td>
-<td style="text-align: right;"><p>1.486</p></td>
-<td style="text-align: right;"><p>1.494</p></td>
-<td style="text-align: right;"><p>2009</p></td>
-<td style="text-align: right;"><p>3</p></td>
-</tr>
-<tr>
-<td style="text-align: left;"><p>AK</p></td>
-<td style="text-align: left;"><p>West</p></td>
-<td style="text-align: right;"><p>2010.00</p></td>
-<td style="text-align: right;"><p>224994</p></td>
-<td style="text-align: right;"><p>161787</p></td>
-<td style="text-align: right;"><p>63207</p></td>
-<td style="text-align: right;"><p>28.1</p></td>
-<td style="text-align: right;"><p>1.481</p></td>
-<td style="text-align: right;"><p>1.524</p></td>
-<td style="text-align: right;"><p>2009</p></td>
-<td style="text-align: right;"><p>4</p></td>
-</tr>
-<tr>
-<td style="text-align: left;"><p>AK</p></td>
-<td style="text-align: left;"><p>West</p></td>
-<td style="text-align: right;"><p>2008.00</p></td>
-<td style="text-align: right;"><p>234590</p></td>
-<td style="text-align: right;"><p>155400</p></td>
-<td style="text-align: right;"><p>79190</p></td>
-<td style="text-align: right;"><p>33.8</p></td>
-<td style="text-align: right;"><p>1.544</p></td>
-<td style="text-align: right;"><p>1.885</p></td>
-<td style="text-align: right;"><p>2007</p></td>
-<td style="text-align: right;"><p>4</p></td>
-</tr>
-<tr>
-<td style="text-align: left;"><p>AK</p></td>
-<td style="text-align: left;"><p>West</p></td>
-<td style="text-align: right;"><p>2008.25</p></td>
-<td style="text-align: right;"><p>233714</p></td>
-<td style="text-align: right;"><p>157458</p></td>
-<td style="text-align: right;"><p>76256</p></td>
-<td style="text-align: right;"><p>32.6</p></td>
-<td style="text-align: right;"><p>1.538</p></td>
-<td style="text-align: right;"><p>1.817</p></td>
-<td style="text-align: right;"><p>2008</p></td>
-<td style="text-align: right;"><p>1</p></td>
-</tr>
-</tbody>
-</table>
+| State | region | Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
+|:------|:------|------:|------:|------:|------:|------:|------:|------:|------:|------:|
+| AK | West | 2010.25 | 224952 | 160599 | 64352 | 28.6 | 1.481 | 1.552 | 2010 | 1 |
+| AK | West | 2010.50 | 225511 | 160252 | 65259 | 28.9 | 1.484 | 1.576 | 2010 | 2 |
+| AK | West | 2009.75 | 225820 | 163791 | 62029 | 27.5 | 1.486 | 1.494 | 2009 | 3 |
+| AK | West | 2010.00 | 224994 | 161787 | 63207 | 28.1 | 1.481 | 1.524 | 2009 | 4 |
+| AK | West | 2008.00 | 234590 | 155400 | 79190 | 33.8 | 1.544 | 1.885 | 2007 | 4 |
+| AK | West | 2008.25 | 233714 | 157458 | 76256 | 32.6 | 1.538 | 1.817 | 2008 | 1 |
 
 #### 1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:
 
@@ -189,7 +83,7 @@ housing %>%
 -   Create a new tibble or regular dataframe consisting of this new updated `region` variable along with the original variables `State`, `Date` and `Land.Value` (and no others)
 
     ```{r}
-    housingUpdated <- housing |> 
+    housing_updated <- housing |> 
       mutate(region = ifelse(State=="DC",
                              "South", 
                              region)) |> 
@@ -199,7 +93,7 @@ housing %>%
 -   Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
 
     ```{r}
-    recordsDC <- housingUpdated |> 
+    recordsDC <- housing_updated |> 
       filter(State=="DC")
     head(recordsDC) ## first six.. unsure if "head" is exactly 6 or if it is just chance 
     ```
@@ -213,16 +107,16 @@ housing %>%
 | South   | DC    |     361999 | 2004.00 |
 | South   | DC    |     382792 | 2004.25 |
 
-Answer: [ ]{style="color:blue"}Answer is in above code chunks (i think)
+Answer: Answer is in above code chunks (i think)
 
 #### 1.2 Generate a tibble/dataframe that summarizes the mean land value of each region at each time point and show its first 6 lines.
 
 ```{r}
-MeanLandValueByRevion <- housing |> 
+mean_land_value_by_region <- housing_updated |> 
   group_by(region,Date) |> 
-  summarize(MeanLandValue = mean(Land.Value, na.rm=TRUE)) |> 
+  summarize(mean_land_value = mean(Land.Value, na.rm=TRUE)) |> 
   ungroup()
-head(MeanLandValueByRevion) ## top of the dataset 
+head(mean_land_value_by_region) ## top of the dataset 
 ```
 
 | region  |    Date | mean_land_value |
@@ -240,30 +134,12 @@ head(MeanLandValueByRevion) ## top of the dataset
 
 ```{r}
 
-housingUpdated <- housing %>%
-  mutate(region = ifelse(State == "DC", "South", region)) %>%
-  select(region, State, Land.Value, Date)## okay I see why naming conventions are REALLY important now. 
-
-MeanLandValueByRevion <- housingUpdated |> 
-  group_by(region,Date) |> 
-  summarize(MeanLandValue = mean(Land.Value, na.rm=TRUE)) |> 
-  ungroup()
-
-
-ggplot(MeanLandValueByRevion,
-       aes(x=Date,
-           y=MeanLandValue,
-           color=region))+
-  geom_line(size=1) + 
-  labs(title= "Mean Land by Region(1975-2013)",
-       x="Year",
-       y="Mean Land Value") 
-       
+ggplot(mean_land_value_by_region,
+       aes(x = Date, 
+           y = mean_land_value,
+           color = region)) + 
+  geom_line(size = 1) ## crucial step was to use "housing_updated" and not "housing"
 ```
-
-![](assignment_5_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-
-<br>
 
 ## Exercise 2. Life expectancy and GDP per capita 1952-2007
 
@@ -353,7 +229,7 @@ Note: only two Oceanian countries are included in this dataset, and `geom_smooth
 
 #### 2.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy **by plotting**, and discuss historical events possibly explaining these trends. (Hint: facet by country)
 
-Answer: [ Write your response here. ]{style="color:blue"}
+Answer: [Write your response here.]{style="color:blue"}
 
 <br> <br>
 
@@ -369,7 +245,7 @@ Answer: [ Write your response here. ]{style="color:blue"}
 
 #### 2.9 There is one Asian country that had a very sharp decline in per capita GDP. With the previously filtered dataset, **use a plot** to identify this country and speculate on the historical event underlying this pattern (**OPTIONAL**)
 
-Answer: [ Write your response here. ]{style="color:blue"}
+Answer: [Write your response here.]{style="color:blue"}
 
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
 
