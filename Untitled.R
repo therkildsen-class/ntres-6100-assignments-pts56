@@ -1,8 +1,16 @@
-library(usethis) #install.packages("usethis")
-library(gitcreds) #install.packages("gitcreds")
+library(openintro) #install.packages("openintro")
 
+## 95% I is x 
+ages <- run12$age
+hist(ages)
+sigma <- sd(ages)
+population_mean <- mean(ages)
+mu <- populatoin_mean <- mean(ages)
+population_mean
 
-use_git_config(user.name = "pts56", user.email = "pts56@cornell.edu")
+n <- 42
 
-
-create_github_token()
+#sample 42 runners, compute the smample agerage 
+# age and construct CI
+sample_ages <- sample(ages, size = n )
+sample_agea

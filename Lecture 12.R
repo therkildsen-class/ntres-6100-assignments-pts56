@@ -131,7 +131,65 @@ airports2 <- airports |>
 flights2 |> 
   left_join(airports2, join_by(origin == faa)) |> 
   left_join(airports2, join_by(dest == faa), suffix = c("_origin", "_dest"))
-
+##but for each flight we hafve to load th eorgin airport and the destinatoin airport 
 
 ## next week, we'll talk about iterations 
+
+### NOTES ON JOINS
+# keys (primary key uniquely identifies an observatoin in its own table)
+## Keys (foreign key) is a vairable that corresponds to a pimrary key in another table 
+## understanding joints 
+# Left joins should be our default 
+#filteering joins 
+
+airports |> 
+  semi_join(flights2, join_by(faa == origin))
+
+## where these semi_join fcns become super useful is when we're filtering on combinatoin
+## opposite of a semi_join is an anti_join (Retain only records that don't match)
+
+flights2 |> 
+  anti_join(airports, join_by(dest == faa)) |> ## all the flights that were to airports not listed in airports dataframe 
+  distinct(dest) ## gives us the unique value foer the variable 
+## just so we don't get missing data that we didn't know was missing 
+# if we don't we can quickly get a list of them that way 
+
+
+## task is to "filter flights to only show planes that have shoed at least 100 flights) 
+
+
+
+planes_gt100 <- flights2 |> 
+  group_by(tailnum) |> 
+  summarize(count = n()) |> 
+  filter(count > 100) 
+
+
+flights |> 
+  semi_join(planes_gt100)
+
+## now we have a subseted table with only flgihts that have flown > 100 flights. I see why this could be quite important
+
+planes_gt100
+
+## or 
+
+
+## how do i subset my flights ? 
+
+## i want to count the number of lines that each tail number is countered in 
+
+
+
+## we could aos be many-to-many
+# we just need to be mindful of what those relationships are
+# if we run into probelms with joining... ceck 
+# check that none of the varaibles in the primary key are missing 
+# check that your foreign keys match primary keys in another tabler. the best way to do this is with an anti_join()
+# 
+
+
+
+
+
 
