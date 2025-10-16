@@ -32,6 +32,7 @@ library(knitr)
 ```{r}
 library(tidyverse)
 library(knitr)
+library(janitor)
 ```
 
 ## Exercise 1. Tibble and Data Import
@@ -113,12 +114,25 @@ dataset2 <- dataset2 |>
 ```
 
 ```{r}
-dataset3 <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset3.txt")
+ dataset3raw <- read_delim(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset3.txt",
+  delim = ";",                   
+  skip = 2,                     
+  na = c("?", "Not Available"),   
 
-view(dataset3)
+)
 
-dataset3 |> 
-  pivot_longer()
+ view(dataset3raw)
+ 
+ dataset3tidy <- dataset3raw |>
+  janitor::clean_names() |>
+  mutate(across(everything(),
+                ~str_remove_all(., "/"))) |>
+  mutate(across(c(weight, price), 
+                parse_number))
+ 
+ dataset3tidy
+ 
 ```
 
 #### 1.4 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset4.txt` into R. Watch out for comments, units, and decimal marks (which are `,` in this case).
@@ -137,6 +151,38 @@ dataset3 |>
 ## 3 durian     10  19.9
 ```
 
+```{r}
+dataset4raw <- read_delim(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset4.txt",
+  delim = "\t",                      
+  comment = "#",                     
+  locale = locale(decimal_mark = ","),  
+  trim_ws = TRUE
+)
+
+view(dataset4raw) # it is so laughably messy 
+problems(dataset4raw)
+dataset4raw2 <- dataset4raw |> 
+  clean_names()
+
+```
+
+```{r}
+dataset4 <- dataset4raw2 |>
+  mutate(name_weight_price = str_remove(name_weight_price, "/.*")) |> 
+  separate(name_weight_price,
+           into = c("name", "weight", "price"),
+           sep = " ") |>
+  mutate(
+    weight = str_remove(weight, "kg"),
+    price = str_remove(price, "€"),
+    price = str_replace(price, ",", "."),
+    across(c(weight, price), as.numeric)
+  )
+dataset4
+
+```
+
 #### 1.5 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset5.txt` into R. Parse the columns properly. As a reminder, you can read about parsing date and time data [here](https://r4ds.had.co.nz/data-import.html#readr-datetimes). Write this imported and parsed data frame into a new csv file named `dataset5_new.csv` in your `problem_sets` folder.
 
 ```         
@@ -146,6 +192,16 @@ dataset3 |>
 ## 1 apple  2018-09-26        01:00 
 ## 2 orange 2018-10-02        13:00 
 ## 3 durian 2018-10-21        11:00
+```
+
+```{r}
+dataset5_raw <- read_delim(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset5.txt",
+  delim = ";",          
+  skip = 0,       
+  na = c("?", "NA")   
+)
+dataset5_raw
 ```
 
 ## Exercise 2. Weather station
@@ -158,10 +214,8 @@ This dataset contains the weather and air quality data collected by a weather st
 
 -   Import it into R and print it in a table as shown below with `kable()`.
 
--   
-
 | Item | Unit | Description |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | AMB_TEMP | Celsius | Ambient air temperature |
 | CO | ppm | Carbon monoxide |
 | NO | ppb | Nitric oxide |
@@ -184,7 +238,32 @@ This dataset contains the weather and air quality data collected by a weather st
 `NR` indicates no rainfall\
 blank indicates no data
 
-<br>
+```{r}
+weather <- read_lines(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station_notes.txt"
+)
+view(weather)
+
+
+weather_table <- tribble(
+  ~Item, ~Unnit, ~Description,
+   "AMB_TEMP", "Celsius", "Ambient air temperature", 
+   "CO", "ppm", "Carbon monoxide",
+   "NO", "ppb", "Nitric oxide",
+   "NO2", "ppb", "Nitrogen dioxide", 
+   "NOx", "ppb", "Nitrogen oxides",
+   "O3", "ppb", "Ozone", 
+   "PM10", "μg/m3", "Particulate matter with a diameter between 2.5 and 10 μm",
+   "PM2.5", "μg/m3", "Particulate matter with a diameter of 2.5 μm or less", 
+   "RAINFALL","mm", "Rainfall",
+   "RH","%","Relative humidity",
+   "SO2","ppb","Sulfur dioxide",
+   "WD_HR", "degress", "Wind direction (The average of hour)",
+   "WIND_DIREC", "degress", "Wind direction (The average of last ten minutes per hour)",
+   "WIND_SPEED", "m/sec", "Wind speed (The average of last ten minutes per hour)",
+   "WS_HR" , "m/sec", "Wind speed (The average of hour)")
+weather_table # i am sure there is a better way... did same maual as 1.1 
+```
 
 #### 2.2 Data tidying
 
@@ -232,7 +311,94 @@ After cleaning:
 ## 6 2015-01-01 Cailiao 05:00        14  0.51   1.7    13    15    32   110
 ```
 
+```{r}
+weather_raw <- read_csv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station.csv"
+) ##step 1, importing file 
+
+## 2.a error message abt values/characters 
+
+weather_raw2 <- weather_raw |> 
+  mutate(across(3:ncol(weather_raw), as.character())
+         
+         view(weather_raw2)
+## Part 2.b: Tidy format 
+
+weather_long <- weather_raw2 |> 
+  pivot_longer(
+    cols = -c(date, station),
+    names_to = "hour",
+    values_to = "value")
+
+
+weather_long2 <- weather_long |> 
+  filter(hour != "item")
+
+
+weather_long3 <- weather_long2 |> 
+  mutate(
+    time = hm(paste0(hour, ":00")),  # combine hour → time
+    value = as.numeric(ifelse(value == "NR", 0, value))  # handle NR
+ 
+
+
+```
+
+```{r}
+library(tidyverse) ## envt is getting choatic so restarting r to keep space tidy 
+library(knitr)
+library(janitor)
+weather_raw <- read_csv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station.csv")
+
+
+#view(weather_raw)
+#head(weather_raw)
+
+weather_raw2 <- weather_raw |> 
+  mutate(across(matches("^\\d{2}$"), as.character))
+
+weather_long <- weather_raw2 |> 
+  pivot_longer(
+    cols = matches("^\\d{2}$"), 
+    names_to = "hour",
+    values_to = "value"
+  )
+#view(weather_long) ## I DID SOMETHING !!!
+
+#-------------------------------------------
+
+weather_long2 <- weather_long |> 
+  mutate(
+    value = ifelse(value == "NR", 0, value),  
+    value = na_if(value, "NaN"),            
+    value = as.numeric(value)               
+  )
+#view(weather_long2)
+
+weather_long3 <- weather_long2 |> 
+  mutate(time = paste0(hour, ":00")) |> 
+  select(-hour)
+
+#view(weather_long3)
+
+
+weather_tidy <- weather_long3 |> 
+  pivot_wider(
+    names_from = item, 
+    values_from = value
+  )
+
+view(weather_tidy) ####HAZAH !!!!! 
+
+head(weather_tidy)
+```
+
 #### 2.3 Using this cleaned dataset, plot the daily variation in ambient temperature on September 25, 2015, as shown below.
+
+```{r}
+
+```
 
 #### 2.4 Plot the daily average ambient temperature throughout the year with a **continuous line**, as shown below.
 
@@ -261,7 +427,7 @@ This dataset contains information on 1038 camera models. It was obtained from th
 <br>
 
 | Brand | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|:-----|:-----|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
 | Agfa | ePhoto 1280 | 1997 | 1024 | 640 | 0 | 38 | 114 | 70 | 40 | 4 | 420 | 95 | 179 |
 | Agfa | ePhoto 1680 | 1998 | 1280 | 640 | 1 | 38 | 114 | 50 | 0 | 4 | 420 | 158 | 179 |
 | Agfa | ePhoto CL18 | 2000 | 640 | 0 | 0 | 45 | 45 | 0 | 0 | 2 | 0 | 0 | 179 |
@@ -284,7 +450,7 @@ This dataset contains information on 1038 camera models. It was obtained from th
 <br>
 
 | Brand | Line | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|:----|:----|:----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
 | Canon | PowerShot | 350 | 1997 | 640 | 0 | 0 | 42 | 42 | 70 | 3 | 2 | 320 | 93 | 149 |
 | Canon | PowerShot | 600 | 1996 | 832 | 640 | 0 | 50 | 50 | 40 | 10 | 1 | 460 | 160 | 139 |
 | Canon | PowerShot | A10 | 2001 | 1280 | 1024 | 1 | 35 | 105 | 76 | 16 | 8 | 375 | 110 | 139 |
