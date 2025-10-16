@@ -1,5 +1,8 @@
 for (cntry in country_list) {
   
+  
+  contient = "Europe
+  "
   ## filter the country to plot
   gap_to_plot <- gapminder |>
     filter(country == cntry)

@@ -161,7 +161,7 @@ This dataset contains the weather and air quality data collected by a weather st
 -   
 
 | Item | Unit | Description |
-|:-----------------------|:-----------------------|:-----------------------|
+|:---|:---|:---|
 | AMB_TEMP | Celsius | Ambient air temperature |
 | CO | ppm | Carbon monoxide |
 | NO | ppb | Nitric oxide |
@@ -261,7 +261,7 @@ This dataset contains information on 1038 camera models. It was obtained from th
 <br>
 
 | Brand | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:----|:----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Agfa | ePhoto 1280 | 1997 | 1024 | 640 | 0 | 38 | 114 | 70 | 40 | 4 | 420 | 95 | 179 |
 | Agfa | ePhoto 1680 | 1998 | 1280 | 640 | 1 | 38 | 114 | 50 | 0 | 4 | 420 | 158 | 179 |
 | Agfa | ePhoto CL18 | 2000 | 640 | 0 | 0 | 45 | 45 | 0 | 0 | 2 | 0 | 0 | 179 |
@@ -284,7 +284,7 @@ This dataset contains information on 1038 camera models. It was obtained from th
 <br>
 
 | Brand | Line | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:----|:----|:----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
+|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Canon | PowerShot | 350 | 1997 | 640 | 0 | 0 | 42 | 42 | 70 | 3 | 2 | 320 | 93 | 149 |
 | Canon | PowerShot | 600 | 1996 | 832 | 640 | 0 | 50 | 50 | 40 | 10 | 1 | 460 | 160 | 139 |
 | Canon | PowerShot | A10 | 2001 | 1280 | 1024 | 1 | 35 | 105 | 76 | 16 | 8 | 375 | 110 | 139 |
