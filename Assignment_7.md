@@ -827,6 +827,16 @@ Check out the help file for `slice_max()` for more info.*
 </tbody>
 </table>
 
+``` r
+#view(polls_us_election_2016)
+q_4a <- polls_us_election_2016 |> 
+  filter(pollster == "Ipsos", !state %in% c("U.S.", "National")) |> 
+  group_by(state) |> 
+  slice_max(enddate, n = 1, with_ties = FALSE) |> 
+  ungroup() |> 
+  select(state, adjpoll_clinton, adjpoll_trump)
+```
+
 **4b.** Combine the `q_4a` dataset with the `q_1b` dataset with a `join`
 function. The resulting dataset should only have 47 rows. Create the
 following new variables in this joined dataset.
@@ -893,13 +903,49 @@ rows.
 </tbody>
 </table>
 
-<br> <br>
+``` r
+q_4b <- q_4a |> 
+  inner_join(q_1b, by = "state") |> 
+  mutate(
+    polling_margin = adjpoll_clinton - adjpoll_trump,
+    actual_margin  = clinton - trump,
+    polling_error  = polling_margin - actual_margin,
+    predicted_winner = if_else(adjpoll_clinton > adjpoll_trump, "clinton", "trump"),
+    result = if_else(
+      winner == predicted_winner, 
+      "correct prediction", 
+      str_c("unexpected ", winner, " win")
+    )
+  ) |> 
+  select(state, polling_error, result, electoral_votes)
+
+
+head(q_4b)
+```
+
+    # A tibble: 6 × 4
+      state       polling_error result             electoral_votes
+      <chr>               <dbl> <chr>                        <dbl>
+    1 Alabama            11.6   correct prediction               9
+    2 Arizona            -1.32  correct prediction              11
+    3 Arkansas           10.8   correct prediction               6
+    4 California         -2.78  correct prediction              55
+    5 Colorado            0.366 correct prediction               9
+    6 Connecticut        -3.69  correct prediction               7
 
 **4c.** Generate the following plot with the `q_4b` dataset. Use chunk
 options to adjust the dimensions of the plot to make it longer than the
 default dimension. Based on this plot, where did the polls get wrong in
 the 2016 election?
 
-![](assignment_7_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+``` r
+ggplot(q_4b, aes(x = reorder(state, polling_error),
+                  y = polling_error, 
+                  color = result,
+                  size = electoral_votes)) +
+  geom_point() +       
+  coord_flip() + 
+  scale_size_continuous(range = c(2, 10))
+```
 
-<br> <br>
+![](Assignment_7.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png)
