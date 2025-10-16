@@ -59,7 +59,7 @@ housing %>%
 ```
 
 | State | region | Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
-|:------|:------|------:|------:|------:|------:|------:|------:|------:|------:|------:|
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | AK | West | 2010.25 | 224952 | 160599 | 64352 | 28.6 | 1.481 | 1.552 | 2010 | 1 |
 | AK | West | 2010.50 | 225511 | 160252 | 65259 | 28.9 | 1.484 | 1.576 | 2010 | 2 |
 | AK | West | 2009.75 | 225820 | 163791 | 62029 | 27.5 | 1.486 | 1.494 | 2009 | 3 |
@@ -248,7 +248,7 @@ head(asia_gapminder)
 
 #### 2.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy **by plotting**, and discuss historical events possibly explaining these trends. (Hint: facet by country)
 
-Answer: [There are 4 countries that had abnormal trends in life expectancy (Cambodia, China, Iraq, the Democratic People's Republic of Korea and Afghanistan. I just listened to a podcast on the khmer Rouge Civil War/genocide/Vietnam Invasion which i Imagine is the reason for Cambodia abnormal trends. Both drops in the DPRK and China are due to famine. The plateau in Afghanistan starts with the Soviet invasion in 1979 and is still low due to American invasion and subsequent occupation. ]{style="color:blue"}
+Answer: [There are 4 countries that had abnormal trends in life expectancy (Cambodia, China, Iraq, the Democratic People's Republic of Korea and Afghanistan. I just listened to a podcast on the khmer Rouge Civil War/genocide/Vietnam Invasion which i Imagine is the reason for Cambodia abnormal trends. Both drops in the DPRK and China are due to famine. The plateau in Afghanistan starts with the Soviet invasion in 1979 and is still low due to American invasion and subsequent occupation.]{style="color:blue"}
 
 ```{r}
 asia_gapminder |> 

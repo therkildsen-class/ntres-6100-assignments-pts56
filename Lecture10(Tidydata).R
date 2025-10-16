@@ -38,7 +38,8 @@ table1 |>
 
 ## much easier to work with tidydata 
 
-table4a
+view(table4a)
+view(tidy4a)
 tidy4a <- table4a |> 
   pivot_longer(c('1999', '2000'), 
                names_to = "year", 
@@ -62,7 +63,10 @@ table2 |>
 tidy2 <- table2 |> 
   pivot_wider(names_from = type, 
               values_from = count)
-
+view(table2)
+view(tidy2)
+view(table3)
+view(table5)
 
 table3
 table3 |> 
