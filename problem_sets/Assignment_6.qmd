@@ -431,6 +431,7 @@ ggplot(daily_avg, aes(x = date, y = daily_AMB_TEMP)) +
 *Hint: separating date into three columns might be helpful.*
 
 ```{r}
+view(weather_tidy)
 rainfall_bymonth <- weather_tidy |> 
   mutate(
     month = format(date, "%m")   # extract month as "01", "02", ...
