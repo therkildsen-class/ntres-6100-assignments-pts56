@@ -6,8 +6,6 @@ editor: visual
 
 # Assignment 5: Data transformation and visualization - Part 2
 
-<br>
-
 ## Instructions: Please read through this before you begin
 
 -   This assignment is due by **10pm on Thursday 10/02/2025**. Please upload it using your personal GitHub repository for this class.
@@ -59,7 +57,7 @@ housing %>%
 ```
 
 | State | region | Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
-|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|:------|:------|------:|------:|------:|------:|------:|------:|------:|------:|------:|
 | AK | West | 2010.25 | 224952 | 160599 | 64352 | 28.6 | 1.481 | 1.552 | 2010 | 1 |
 | AK | West | 2010.50 | 225511 | 160252 | 65259 | 28.9 | 1.484 | 1.576 | 2010 | 2 |
 | AK | West | 2009.75 | 225820 | 163791 | 62029 | 27.5 | 1.486 | 1.494 | 2009 | 3 |
@@ -70,6 +68,8 @@ housing %>%
 #### 1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:
 
 -   Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
+
+    Full Answer in bottom code chunck (was just working through them)
 
     ```{r}
     housing |> 
@@ -88,6 +88,8 @@ housing %>%
                              "South", 
                              region)) |> 
       select(region, State, Land.Value, Date)
+    housing_updated
+
     ```
 
 -   Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
@@ -128,8 +130,6 @@ head(mean_land_value_by_region) ## top of the dataset
 | Midwest | 1976.25 |        2967.333 |
 | Midwest | 1976.50 |        3212.833 |
 
-<br>
-
 #### 1.3 Using the tibble/dataframe from 1.2, plot the trend in mean land value of each region through time.
 
 ```{r}
@@ -138,7 +138,7 @@ ggplot(mean_land_value_by_region,
        aes(x = Date, 
            y = mean_land_value,
            color = region)) + 
-  geom_line(size = 1) ## crucial step was to use "housing_updated" and not "housing"
+  geom_line(size = 0.5) ## changed size to 0.5 to look more like assignment on website.
 ```
 
 ## Exercise 2. Life expectancy and GDP per capita 1952-2007
@@ -196,7 +196,7 @@ gapminder |>
   ggplot(aes(x=gdpPercap,
              y=lifeExp, color = continent)) +
   geom_point()+
-  geom_smooth()
+  geom_smooth(se = FALSE)
 ```
 
 Note: only two Oceanian countries are included in this dataset, and `geom_smooth()` does not work with two data points, which is why they are excluded.
