@@ -51,7 +51,7 @@ We will also use [this dataset](https://raw.githubusercontent.com/kshaffer/elect
 **1a.** Use a `join` function to combine the `murders` dataset, which contains information on population size, and the `results_us_election_2016` dataset, which contains information on the number of electoral votes. Name this new dataset `q_1a`, and show its first 6 rows.
 
 | state | abb | region | population | total | electoral_votes | clinton | trump | johnson | stein | mcmullin | others |
-|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|:-----|:-----|:-----|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
 | Alabama | AL | South | 4779736 | 135 | 9 | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.0225246 |
 | Alaska | AK | West | 710231 | 19 | 3 | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.4904710 |
 | Arizona | AZ | West | 6392017 | 232 | 11 | 44.58042 | 48.08314 | 4.082188 | 1.3185997 | 0.6699155 | 1.2657329 |
@@ -69,7 +69,7 @@ head(q_1a)
 **1b.** Add a new variable in the `q_1a` dataset to indicate which candidate won in each state, and remove the columns `abb`, `region`, and `total`. Name this new dataset `q_1b`, and show its first 6 rows.
 
 | state | population | electoral_votes | clinton | trump | johnson | stein | mcmullin | others | winner |
-|:---|---:|---:|---:|---:|---:|---:|---:|---:|:---|
+|:------|------:|------:|------:|------:|------:|------:|------:|------:|:------|
 | Alabama | 4779736 | 9 | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.0225246 | trump |
 | Alaska | 710231 | 3 | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.4904710 | trump |
 | Arizona | 6392017 | 11 | 44.58042 | 48.08314 | 4.082188 | 1.3185997 | 0.6699155 | 1.2657329 | trump |
@@ -78,8 +78,8 @@ head(q_1a)
 | Colorado | 5029196 | 9 | 48.15651 | 43.25098 | 5.183748 | 1.3825031 | 1.0400874 | 0.9861714 | clinton |
 
 ```{r}
-view(results_us_election_2016)
-view(q_1a)
+#view(results_us_election_2016)
+#view(q_1a)
 q_1b <- q_1a |> 
   mutate(
     winner = ifelse(trump > clinton, "trump", "clinton") ) |> 
@@ -97,12 +97,7 @@ ggplot(q_1b,
             y = electoral_votes,
             color = winner)) + 
   geom_point(size = 2) + 
-  geom_smooth(color = "black", size = 0.1, se = FALSE) + 
-  labs(
-    title = "Population Size and Electoral votes (2016)",
-    x = "Populatoin", 
-    y = "Electoral"
-  )
+  geom_smooth(color = "black", size = 0.1, se = FALSE) 
 ```
 
 ### Question 2. Would the election result be any different if the number of electoral votes is exactly proportional to a state’s population size?
@@ -110,7 +105,7 @@ ggplot(q_1b,
 **2a.** First, convert the `q_1b` dataset to longer format such that the `population` and `electoral_votes` columns are turned into rows as shown below. Name this new dataset `q_2a`, and show its first 6 rows.
 
 | state | clinton | trump | johnson | stein | mcmullin | others | winner | metric | value |
-|:---|---:|---:|---:|---:|---:|---:|:---|:---|---:|
+|:------|------:|------:|------:|------:|------:|------:|:------|:------|------:|
 | Alabama | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.022525 | trump | population | 4779736 |
 | Alabama | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.022525 | trump | electoral_votes | 9 |
 | Alaska | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.490471 | trump | population | 710231 |
@@ -130,12 +125,12 @@ head(q_2a) ##view(q_2a)
 
 **2b.** Then, sum up the number of electoral votes and population size across all states for each candidate. Name this new dataset `q_2b`, and print it as shown below.
 
-| metric          | winner  |     value |
-|:----------------|:--------|----------:|
-| electoral_votes | clinton |       231 |
-| electoral_votes | trump   |       302 |
-| population      | clinton | 134982448 |
-| population      | trump   | 174881780 |
+|     |     |     |
+|:----|:----|----:|
+|     |     |     |
+|     |     |     |
+|     |     |     |
+|     |     |     |
 
 ```{r}
 q_2b <- q_2a |> 
@@ -154,14 +149,8 @@ q_2b
 
 ggplot(q_2b, aes(x = metric, y = value, fill = winner)) +
   geom_col(position = "fill") +  
-  scale_y_continuous(labels = scales::percent_format()) + ## had to look this up 
-  labs(
-    x = "value",
-    y = "metric",
-    fill = "Winner",
-  ) +
-  theme_minimal()
-  
+  scale_y_continuous(labels = scales::percent_format())  ## had to look this up 
+
 ```
 
 ### Question 3. What if the election was determined by popular votes?
@@ -266,6 +255,7 @@ q_4a <- polls_us_election_2016 |>
   slice_max(enddate, n = 1, with_ties = FALSE) |> 
   ungroup() |> 
   select(state, adjpoll_clinton, adjpoll_trump)
+head(q_4a)
 ```
 
 **4b.** Combine the `q_4a` dataset with the `q_1b` dataset with a `join` function. The resulting dataset should only have 47 rows. Create the following new variables in this joined dataset.
@@ -310,12 +300,12 @@ head(q_4b)
 **4c.** Generate the following plot with the `q_4b` dataset. Use chunk options to adjust the dimensions of the plot to make it longer than the default dimension. Based on this plot, where did the polls get wrong in the 2016 election?
 
 ```{r}
-ggplot(q_4b, aes(x = reorder(state, polling_error),
-                  y = polling_error, 
-                  color = result,
-                  size = electoral_votes)) +
+ggplot(q_4b, aes(x = state, 
+                 y = polling_error, 
+                 color = result, 
+                 size = electoral_votes)) +
   geom_point() +       
   coord_flip() + 
-  scale_size_continuous(range = c(2, 10))
+  scale_size_continuous(range = c(1, 7))
 
 ```
