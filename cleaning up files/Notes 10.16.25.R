@@ -33,6 +33,7 @@ for (cntry in country_list) {
     ggsave(filename = str_c("figures/", cntry, "_gdp_per_gap.png", sep = "", plot = my_plot)
 }
 
+#### much more simple fout loop 
 
 
 
