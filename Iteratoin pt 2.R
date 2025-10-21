@@ -45,6 +45,7 @@ length(country_list)
 view(country_list)
 
 for (cntry in country_list) {
+  print(str_c("Plotting ", cntry))
   
   gap_to_plot <- gap_europe |>
     filter(country == cntry)
@@ -52,26 +53,33 @@ for (cntry in country_list) {
     geom_point() +
     labs(title = str_c(cntry, "GDP", sep = " "))
   
-  if (gap_to_plot$estimated == "yes") {
+  if (any(gap_to_plot$estimated == "yes")) {
+
     
-    print(str_c("data are estimated"))
+    print(str_c(cntry,"data are estimated"))
     
     my_plot <- my_plot + 
-      labs(subtitle = "Estimated dats")
+      labs(subtitle = "Estimated data")
+  } else {
+    
+    
+    
+    print(str_c(cntry,"data are reported"))
+    
+    my_plot <- my_plot + 
+      labs(subtitle = "reported data")
   }
     
+  ## this whole construct will give us different values based on the different value (you could totall use this for HCNRA jetboat data)
     
-  print(str_c("Plotting ", cntry))
   ggsave(filename = str_c("figures/europe/", cntry, "_gdp_tot.png", sep = ""), plot = my_plot)}
 
 
-##learning these if/else conditionssatements can be helpful 
 
-est <- re
-  
 
-  
-  
+
+  ## else is going to refer back to the if statement (it will not run on its own) 
+
   
   
   
