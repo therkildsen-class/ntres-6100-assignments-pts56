@@ -98,8 +98,7 @@ economist_data |> ## same workflow from Thurs Class
     title = "Human Development Index vs Corruption Perception Index",
     x = "HDI",
     y = "CPI"
-  ) + 
-  theme_minimal() ## I like how it looks 
+  )  
 
     
   
@@ -117,8 +116,7 @@ economist_data |> ## same workflow from Thurs Class
     title = "Human Development Index vs Corruption Perception Index",
     x = "HDI",
     y = "CPI"
-  ) + 
-  theme_minimal() ## I like how it looks 
+  )
 ```
 
 ```{r}
@@ -131,7 +129,7 @@ economist_data |> ## same workflow from Thurs Class
     x = "HDI",
     y = "CPI"
   ) + 
-  theme_minimal() ## I like how it looks 
+  theme_minimal() 
 
 ```
 
@@ -341,12 +339,8 @@ economist_data |>
     labs(
     title = "Human Development Index vs Corruption Perception Index",
     x = "HDI",
-    y = "Count"
-  ) + 
-  theme_minimal() 
+    y = "Count") 
 ```
-
-<br>
 
 #### 1.11 Show the distribution of `HDI` in each region using a box plot. Set the transparency of these boxes to 0.5 and do not show outlier points with the box plot. Instead, show all data points for each country in the same plot. (Hint: `geom_jitter()` or `position_jitter()` might be useful.)
 

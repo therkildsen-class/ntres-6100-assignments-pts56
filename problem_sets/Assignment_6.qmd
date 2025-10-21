@@ -215,7 +215,7 @@ This dataset contains the weather and air quality data collected by a weather st
 -   Import it into R and print it in a table as shown below with `kable()`.
 
 | Item | Unit | Description |
-|:-----------------------|:-----------------------|:-----------------------|
+|:---|:---|:---|
 | AMB_TEMP | Celsius | Ambient air temperature |
 | CO | ppm | Carbon monoxide |
 | NO | ppb | Nitric oxide |
@@ -421,7 +421,6 @@ daily_avg <- weather_tidy |>
   group_by(date) |> 
   summarise(daily_AMB_TEMP = mean(AMB_TEMP, na.rm = TRUE))
 
-# Plot
 ggplot(daily_avg, aes(x = date, y = daily_AMB_TEMP)) +
   geom_line(color = "black")
 ```
@@ -430,14 +429,53 @@ ggplot(daily_avg, aes(x = date, y = daily_AMB_TEMP)) +
 
 *Hint: separating date into three columns might be helpful.*
 
+rainfall_bymonth \|\>
+
+ggplot(aes(x = month, y = total_rainfall)) +
+
+geom_col(fill = "skyblue") +
+
+labs(
+
+title = "Total Rainfall per Month",
+
+x = "Month",
+
+y = "Total Rainfall (mm)"
+
+) +
+
+theme_minimal()
+
 ```{r}
-view(weather_tidy)
 rainfall_bymonth <- weather_tidy |> 
   mutate(
     month = format(date, "%m")   # extract month as "01", "02", ...
   ) |> 
   group_by(month) |> 
-  summarise(total_rainfall = sum(RAIN, na.rm = TRUE))
+  summarise(total_rainfall = sum(RAINFALL, na.rm = TRUE))
+
+rainfall_bymonth |> 
+ggplot(aes(x = month, y = total_rainfall)) +
+  geom_col(fill= "black" ) +
+  labs(
+    x = "month",
+    y = "MonthlyRainfall"
+  )
+```
+
+```{r}
+economist_data |> 
+  select(Country, HDI, Region) |> 
+  ggplot() + 
+  geom_histogram (mapping = aes(x = HDI)) +
+  facet_wrap(~Region) + 
+    labs(
+    title = "Human Development Index vs Corruption Perception Index",
+    x = "HDI",
+    y = "Count"
+  ) + 
+  theme_minimal() 
 ```
 
 #### 2.6 Plot the per hour variation in PM2.5 in the first week of September with a **continuous line**, as shown below.
@@ -474,7 +512,7 @@ This dataset contains information on 1038 camera models. It was obtained from th
 <br>
 
 | Brand | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:-----|:-----|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Agfa | ePhoto 1280 | 1997 | 1024 | 640 | 0 | 38 | 114 | 70 | 40 | 4 | 420 | 95 | 179 |
 | Agfa | ePhoto 1680 | 1998 | 1280 | 640 | 1 | 38 | 114 | 50 | 0 | 4 | 420 | 158 | 179 |
 | Agfa | ePhoto CL18 | 2000 | 640 | 0 | 0 | 45 | 45 | 0 | 0 | 2 | 0 | 0 | 179 |
@@ -497,7 +535,7 @@ This dataset contains information on 1038 camera models. It was obtained from th
 <br>
 
 | Brand | Line | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:----|:----|:----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
+|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Canon | PowerShot | 350 | 1997 | 640 | 0 | 0 | 42 | 42 | 70 | 3 | 2 | 320 | 93 | 149 |
 | Canon | PowerShot | 600 | 1996 | 832 | 640 | 0 | 50 | 50 | 40 | 10 | 1 | 460 | 160 | 139 |
 | Canon | PowerShot | A10 | 2001 | 1280 | 1024 | 1 | 35 | 105 | 76 | 16 | 8 | 375 | 110 | 139 |
