@@ -938,6 +938,9 @@ options to adjust the dimensions of the plot to make it longer than the
 default dimension. Based on this plot, where did the polls get wrong in
 the 2016 election?
 
+Based on the plot, the polls got the midwest wrong. He did much better
+in Wisconsin, Michigan, Minnesota and Pennsylvania than the polls said.
+
 ``` r
 ggplot(q_4b, aes(x = reorder(state, polling_error),
                   y = polling_error, 
