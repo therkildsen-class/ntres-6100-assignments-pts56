@@ -82,7 +82,7 @@ economist_data |> ## same workflow from Thurs Class
   select(Country, HDI, CPI) |> ## selecting what I want to use 
   ggplot() + ## don't have to add ^^ or do it same way as base "r"
   geom_point(mapping = aes(x = CPI, y = HDI ), color = "red") 
-  )
+  
 
 ```
 
