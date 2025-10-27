@@ -295,6 +295,10 @@ Here is how it should work with `start = 1987` and `end = 1992`:
 
 **Hint:** `bind_rows()` could be useful for this question.
 
+```{r}
+
+```
+
 ``` r
 start <- 1987
 end <- 1992

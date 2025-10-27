@@ -517,26 +517,33 @@ across all states for each candidate. Name this new dataset `q_2b`, and
 print it as shown below.
 
 <table>
+<thead>
+<tr>
+<th><strong>metric</strong></th>
+<th><strong>winner</strong></th>
+<th><strong>value</strong></th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;"></td>
+<td>electoral_votes</td>
+<td>clinton</td>
+<td>231</td>
 </tr>
 <tr>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;"></td>
+<td>electoral_votes</td>
+<td>trump</td>
+<td>302</td>
 </tr>
 <tr>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;"></td>
+<td>population</td>
+<td>clinton</td>
+<td>134982448</td>
 </tr>
 <tr>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;"></td>
+<td>population</td>
+<td>trump</td>
+<td>174881780</td>
 </tr>
 </tbody>
 </table>
