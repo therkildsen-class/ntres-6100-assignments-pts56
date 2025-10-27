@@ -526,7 +526,109 @@ After cleaning:
     ## 5 2015-01-01 Cailiao 04:00        15  0.51   2      11    13    34   123
     ## 6 2015-01-01 Cailiao 05:00        14  0.51   1.7    13    15    32   110
 
+``` r
+library(tidyverse) ## envt is getting choatic so restarting r to keep space tidy 
+library(knitr)
+library(janitor)
+weather_raw <- read_csv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station.csv")
+```
+
+    Warning: One or more parsing issues, call `problems()` on your data frame for details,
+    e.g.:
+      dat <- vroom(...)
+      problems(dat)
+
+    Rows: 5460 Columns: 27
+    ── Column specification ────────────────────────────────────────────────────────
+    Delimiter: ","
+    chr  (15): station, item, 04, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20
+    dbl  (11): 00, 01, 02, 03, 05, 06, 07, 19, 21, 22, 23
+    date  (1): date
+
+    ℹ Use `spec()` to retrieve the full column specification for this data.
+    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+#view(weather_raw)
+#head(weather_raw)
+
+weather_raw2 <- weather_raw |> 
+  mutate(across(matches("^\\d{2}$"), as.character))
+
+weather_long <- weather_raw2 |> 
+  pivot_longer(
+    cols = matches("^\\d{2}$"), 
+    names_to = "hour",
+    values_to = "value"
+  )
+#view(weather_long) ## I DID SOMETHING !!!
+
+#-------------------------------------------
+
+weather_long2 <- weather_long |> 
+  mutate(
+    value = ifelse(value == "NR", 0, value),  
+    value = na_if(value, "NaN"),            
+    value = as.numeric(value)               
+  )
+```
+
+    Warning: There was 1 warning in `mutate()`.
+    ℹ In argument: `value = as.numeric(value)`.
+    Caused by warning:
+    ! NAs introduced by coercion
+
+``` r
+#view(weather_long2)
+
+weather_long3 <- weather_long2 |> 
+  mutate(time = paste0(hour, ":00")) |> 
+  select(-hour)
+
+#view(weather_long3)
+
+
+weather_tidy <- weather_long3 |> 
+  pivot_wider(
+    names_from = item, 
+    values_from = value
+  )
+
+view(weather_tidy) ####HAZAH !!!!! 
+
+head(weather_tidy)
+```
+
+    # A tibble: 6 × 18
+      date       station time  AMB_TEMP    CO    NO   NO2   NOx    O3  PM10 PM2.5
+      <date>     <chr>   <chr>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+    1 2015-01-01 Cailiao 00:00       16  0.74   1      15    16    35   171    76
+    2 2015-01-01 Cailiao 01:00       16  0.7    0.8    13    14    36   174    78
+    3 2015-01-01 Cailiao 02:00       15  0.66   1.1    13    14    35   160    69
+    4 2015-01-01 Cailiao 03:00       15  0.61   1.7    12    13    34   142    60
+    5 2015-01-01 Cailiao 04:00       15  0.51   2      11    13    34   123    52
+    6 2015-01-01 Cailiao 05:00       14  0.51   1.7    13    15    32   110    44
+    # ℹ 7 more variables: RAINFALL <dbl>, RH <dbl>, SO2 <dbl>, WD_HR <dbl>,
+    #   WIND_DIREC <dbl>, WIND_SPEED <dbl>, WS_HR <dbl>
+
 #### 2.3 Using this cleaned dataset, plot the daily variation in ambient temperature on September 25, 2015, as shown below.
+
+``` r
+weather_sep25 <- weather_tidy |> 
+  filter(date == "2015-09-25")
+
+ggplot(weather_sep25,
+       aes(x = time, 
+           y = AMB_TEMP,
+           group = 1)) + 
+  geom_line(color = "black")+
+  labs(
+    x = "Hour"
+  )
+```
+
+![](Assignment_6.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 #### 2.4 Plot the daily average ambient temperature throughout the year with a **continuous line**, as shown below.
 
@@ -534,10 +636,77 @@ Plot the total rainfall per month in a bar chart, as shown below.
 
 *Hint: separating date into three columns might be helpful.*
 
+``` r
+daily_avg <- weather_tidy |> 
+  group_by(date) |> 
+  summarise(daily_AMB_TEMP = mean(AMB_TEMP, na.rm = TRUE))
+
+ggplot(daily_avg, aes(x = date, y = daily_AMB_TEMP)) +
+  geom_line(color = "black")
+```
+
+![](Assignment_6.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+
+#### **2.5 Plot the total rainfall per month in a bar chart, as shown below.**
+
+*Hint: separating date into three columns might be helpful.*
+
+rainfall_bymonth |\>
+
+ggplot(aes(x = month, y = total_rainfall)) +
+
+geom_col(fill = “skyblue”) +
+
+labs(
+
+title = “Total Rainfall per Month”,
+
+x = “Month”,
+
+y = “Total Rainfall (mm)”
+
+) +
+
+theme_minimal()
+
+``` r
+rainfall_bymonth <- weather_tidy |> 
+  mutate(
+    month = format(date, "%m")   # extract month as "01", "02", ...
+  ) |> 
+  group_by(month) |> 
+  summarise(total_rainfall = sum(RAINFALL, na.rm = TRUE))
+
+rainfall_bymonth |> 
+ggplot(aes(x = month, y = total_rainfall)) +
+  geom_col(fill= "black" ) +
+  labs(
+    x = "month",
+    y = "MonthlyRainfall"
+  )
+```
+
+![](Assignment_6.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+
 #### 2.6 Plot the per hour variation in PM2.5 in the first week of September with a **continuous line**, as shown below.
 
 *Hint: uniting the date and hour and parsing the new variable might be
 helpful.*
+
+``` r
+pm25_week <- weather_tidy |> 
+  filter(date >= "2015-09-01" & date <= "2015-09-07")
+
+pm25_week2 <- pm25_week |> 
+  mutate(
+    datetime = as.POSIXct(paste(date, time), format = "%Y-%m-%d %H:%M")
+  )
+
+ggplot(pm25_week2, aes(x = datetime, y = PM2.5)) +
+  geom_line(color = "black")
+```
+
+![](Assignment_6.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png)
 
 ## Exercise 3. Camera data (OPTIONAL)
 
