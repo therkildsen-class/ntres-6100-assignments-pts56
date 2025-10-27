@@ -3,8 +3,6 @@
 
 # Assignment 5: Data transformation and visualization - Part 2
 
-<br>
-
 ## Instructions: Please read through this before you begin
 
 -   This assignment is due by **10pm on Thursday 10/02/2025**. Please
@@ -326,6 +324,8 @@ housing %>%
 -   Change the region of DC to “South” (Hint: there are multiple ways to
     do this, but `mutate()` and `ifelse()` might be helpful)
 
+    Full Answer in bottom code chunck (was just working through them)
+
     ``` r
     housing |> 
       mutate(region = ifelse(State=="DC",
@@ -359,7 +359,23 @@ housing %>%
                              "South", 
                              region)) |> 
       select(region, State, Land.Value, Date)
+    housing_updated
     ```
+
+        # A tibble: 7,803 × 4
+           region State Land.Value  Date
+           <chr>  <chr>      <dbl> <dbl>
+         1 West   AK         64352 2010.
+         2 West   AK         65259 2010.
+         3 West   AK         62029 2010.
+         4 West   AK         63207 2010 
+         5 West   AK         79190 2008 
+         6 West   AK         76256 2008.
+         7 West   AK         72906 2008.
+         8 West   AK         69460 2009.
+         9 West   AK         66299 2009 
+        10 West   AK         63971 2009.
+        # ℹ 7,793 more rows
 
 -   Pull out the records from DC in this new data frame. How many
     records are there from DC? Show the first 6 lines.
@@ -499,8 +515,6 @@ head(mean_land_value_by_region) ## top of the dataset
 </tbody>
 </table>
 
-<br>
-
 #### 1.3 Using the tibble/dataframe from 1.2, plot the trend in mean land value of each region through time.
 
 ``` r
@@ -508,7 +522,7 @@ ggplot(mean_land_value_by_region,
        aes(x = Date, 
            y = mean_land_value,
            color = region)) + 
-  geom_line(size = 1) ## crucial step was to use "housing_updated" and not "housing"
+  geom_line(size = 0.5) ## changed size to 0.5 to look more like assignment on website.
 ```
 
     Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
@@ -633,7 +647,7 @@ gapminder |>
   ggplot(aes(x=gdpPercap,
              y=lifeExp, color = continent)) +
   geom_point()+
-  geom_smooth()
+  geom_smooth(se = FALSE)
 ```
 
     `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
@@ -810,7 +824,8 @@ asia_gapminder |>
 
 ![](assignment_5.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png)
 
-Answer: <span style="color:blue">Looks like the DPRK. .</span>
+Answer: <span style="color:blue">Looks like the DPRK. Unsure how to tell
+besides color.</span>
 
 #### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
 
